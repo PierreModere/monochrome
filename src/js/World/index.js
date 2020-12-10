@@ -2,7 +2,9 @@ import { AxesHelper, Object3D } from 'three'
 
 import AmbientLightSource from './AmbientLight.js'
 import PointLightSource from './PointLight.js'
-import Suzanne from './Suzanne.js'
+import PointLightSource2 from './PointLight 2'
+import Samothrace from './Samothrace.js'
+import Room from './Room.js'
 
 export default class World {
   constructor(options) {
@@ -26,7 +28,7 @@ export default class World {
   init() {
     this.setAmbientLight()
     this.setPointLight()
-    this.setSuzanne()
+    this.setSamothrace()
   }
   setLoader() {
     this.loadDiv = document.querySelector('.loadScreen')
@@ -66,12 +68,21 @@ export default class World {
       debug: this.debugFolder,
     })
     this.container.add(this.light.container)
+    this.light2 = new PointLightSource2({
+      debug: this.debugFolder,
+    })
+    this.container.add(this.light2.container)
   }
-  setSuzanne() {
-    this.suzanne = new Suzanne({
+  setSamothrace() {
+    this.Samothrace = new Samothrace({
       time: this.time,
       assets: this.assets,
     })
-    this.container.add(this.suzanne.container)
+    this.container.add(this.Samothrace.container)
+    this.Room = new Room({
+      time: this.time,
+      assets: this.assets,
+    })
+    this.container.add(this.Room.container)
   }
 }

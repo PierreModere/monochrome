@@ -33,7 +33,8 @@ export default class App {
       antialias: true,
     })
     // Set background color
-    this.renderer.setClearColor(0x212121, 1)
+    this.renderer.setClearColor(0xf0f0f0, 1)
+    
     // Set renderer pixel ratio & sizes
     this.renderer.setPixelRatio(window.devicePixelRatio)
     this.renderer.setSize(this.sizes.viewport.width, this.sizes.viewport.height)
@@ -47,6 +48,7 @@ export default class App {
     // Set RequestAnimationFrame with 60ips
     this.time.on('tick', () => {
       this.renderer.render(this.scene, this.camera.camera)
+      // console.log(this.camera.camera.position)
     })
   }
   setCamera() {
