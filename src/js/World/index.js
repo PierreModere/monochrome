@@ -1,6 +1,7 @@
 import { AxesHelper, Object3D } from 'three'
 
 import AmbientLightSource from './AmbientLight.js'
+import HemisphereLightSource from './HemisphereLight.js'
 import PointLightSource from './PointLight.js'
 import PointLightSource2 from './PointLight 2'
 import Samothrace from './Samothrace.js'
@@ -26,7 +27,8 @@ export default class World {
     this.setLoader()
   }
   init() {
-    this.setAmbientLight()
+    // this.setAmbientLight()
+    // this.setHemisphereLight()
     this.setPointLight()
     this.setSamothrace()
   }
@@ -57,12 +59,18 @@ export default class World {
       })
     }
   }
-  setAmbientLight() {
-    this.light = new AmbientLightSource({
-      debug: this.debugFolder,
-    })
-    this.container.add(this.light.container)
-  }
+  // setHemisphereLight() {
+  //   this.light = new HemisphereLightSource({
+  //     debug: this.debugFolder,
+  //   })
+  //   this.container.add(this.light.container)
+  // }
+  // setAmbientLight() {
+  //   this.light = new AmbientLightSource({
+  //     debug: this.debugFolder,
+  //   })
+  //   this.container.add(this.light.container)
+  // }
   setPointLight() {
     this.light = new PointLightSource({
       debug: this.debugFolder,

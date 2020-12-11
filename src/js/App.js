@@ -7,6 +7,16 @@ import Assets from '@tools/Loader.js'
 
 import Camera from './Camera.js'
 import World from '@world/index.js'
+import Samothrace from '@world/Samothrace.js'
+
+var mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
+var cameraMoves = {
+  x: 0,
+  y: 0,
+  z: 0,
+  move: false,
+  speed: 0.2,
+}
 
 export default class App {
   constructor(options) {
@@ -22,6 +32,7 @@ export default class App {
     this.setRenderer()
     this.setCamera()
     this.setWorld()
+    this.setMouseRotation()
   }
   setRenderer() {
     // Set scene
@@ -34,7 +45,7 @@ export default class App {
     })
     // Set background color
     this.renderer.setClearColor(0xf0f0f0, 1)
-    
+
     // Set renderer pixel ratio & sizes
     this.renderer.setPixelRatio(window.devicePixelRatio)
     this.renderer.setSize(this.sizes.viewport.width, this.sizes.viewport.height)
@@ -48,9 +59,32 @@ export default class App {
     // Set RequestAnimationFrame with 60ips
     this.time.on('tick', () => {
       this.renderer.render(this.scene, this.camera.camera)
-      // console.log(this.camera.camera.position)
+      // console.log(this.camera.container.position)
     })
   }
+
+  setMouseRotation() {
+    window.addEventListener('mousemove', (e) => {
+      //Rotation verticale
+      this.world.container.rotation.y += Math.max(
+        Math.min((e.clientX - mouse.x) * 0.00005, cameraMoves.speed),
+        -cameraMoves.speed
+      )
+      this.world.container.rotation.x += Math.max(
+        Math.min((mouse.y - e.clientY) * 0.00008, cameraMoves.speed),
+        -cameraMoves.speed
+      )
+      // this.world.container.rotation.y += Math.max(
+      // Math.min((e.clientX - mouse.x) * cameraMoves.limitY, cameraMoves.speed),-cameraMoves.speed)
+
+      //Rotation horizontale
+      // this.world.container.rotation.x -=  Math.max(Math.min((e.clientX - mouse.y) * cameraMoves.limitX, cameraMoves.speed),-cameraMoves.speed)
+
+      mouse.x = e.clientX
+      mouse.y = e.clientY
+    })
+  }
+
   setCamera() {
     // Create camera instance
     this.camera = new Camera({
@@ -60,7 +94,13 @@ export default class App {
     })
     // Add camera to scene
     this.scene.add(this.camera.container)
+    this.camera.camera.rotation.x = 0
+
+    // setTimeout(() => {
+    //   // console.log(this.scene.children[1].children[4].position)
+    // }, 3000)
   }
+
   setWorld() {
     // Create world instance
     this.world = new World({
@@ -70,6 +110,7 @@ export default class App {
     })
     // Add world to scene
     this.scene.add(this.world.container)
+    // console.log(this.scene.children[1].children)
   }
   setConfig() {
     if (window.location.hash === '#debug') {

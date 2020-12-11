@@ -19,7 +19,7 @@ export default class Samothrace {
     this.Samothrace.scale.x = 0.2
     this.Samothrace.scale.y = 0.2
     this.Samothrace.scale.z = 0.2
-    this.Samothrace.position.y = 0.1
+    // this.Samothrace.position.set(10,4,-4)
     this.Samothrace.roughnessFactor
   }
   setMovement() {

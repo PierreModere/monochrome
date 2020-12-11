@@ -2,6 +2,7 @@ import { Object3D, PerspectiveCamera } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import Samothrace from './World/Samothrace.js'
 
+
 export default class Camera {
   constructor(options) {
     // Set Options
@@ -16,6 +17,8 @@ export default class Camera {
     this.setCamera()
     this.setPosition()
     this.setOrbitControls()
+
+
   }
   setCamera() {
     // Create camera
@@ -37,10 +40,10 @@ export default class Camera {
   setPosition() {
     // Set camera position
     this.camera.position.x = 0
-    this.camera.position.y = 2.25
+    this.camera.position.y = 1.6
     this.camera.position.z = 5.0
-    this.camera.lookAt(0, 3, 0)
   }
+
 
   setOrbitControls() {
     // Set orbit control

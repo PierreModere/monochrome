@@ -32,7 +32,7 @@ export default class PointLightSource {
       this.params.positionY,
       this.params.positionZ
     )
-    this.container.add(this.light)
+    // this.container.add(this.light)
 
   }
   setDebug() {

@@ -19,6 +19,7 @@ export default class Room {
     this.Room.scale.x = 0.2
     this.Room.scale.y = 0.2
     this.Room.scale.z = 0.2
+    this.Room.position.z=3.2
   }
   setMovement() {
     this.time.on('tick', () => {
