@@ -1,6 +1,6 @@
 import { Object3D, PointLight, HemisphereLight, Color } from 'three'
 
-export default class PointLightSource {
+export default class PointLightSource2 {
   constructor(options) {
     // Set options
     // this.debug = options.debug
@@ -10,9 +10,9 @@ export default class PointLightSource {
     this.container.name = 'Point Light'
     this.params = {
       color: 0xc4c4c4,
-      positionX: 5,
-      positionY: 1,
-      positionZ: 0,
+      positionX: 0,
+      positionY: 0.5,
+      positionZ: 0.5,
     }
 
     this.createPointLight()
@@ -22,18 +22,17 @@ export default class PointLightSource {
     }
   }
   createPointLight() {
-    this.light = new PointLight(this.params.color,10)
+    this.light = new PointLight(this.params.color)
     this.light.castShadow = true
     // this.light.intensity
-    this.light.shadow.radius = 10
+    // this.light.shadow.radius = 10
 
     this.light.position.set(
       this.params.positionX,
       this.params.positionY,
       this.params.positionZ
     )
-    // this.container.add(this.light)
-
+    this.container.add(this.light)
   }
   setDebug() {
     // Color debug

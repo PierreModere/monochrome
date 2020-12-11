@@ -41,6 +41,7 @@ export default class Loader extends EventEmitter {
         filetype: ['gltf', 'glb'],
         action: (model) => {
           gltfLoader.load(
+            
             model.src,
             (loaded) => {
               this.loadComplete(model, loaded)

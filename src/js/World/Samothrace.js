@@ -1,4 +1,7 @@
-import { Object3D } from 'three'
+import { Raycaster, Vector2, Object3D } from 'three'
+
+var raycaster = new Raycaster()
+var mouse = new Vector2()
 
 export default class Samothrace {
   constructor(options) {
@@ -19,8 +22,12 @@ export default class Samothrace {
     this.Samothrace.scale.x = 0.2
     this.Samothrace.scale.y = 0.2
     this.Samothrace.scale.z = 0.2
-    // this.Samothrace.position.set(10,4,-4)
-    this.Samothrace.roughnessFactor
+    // this.Samothrace.position.z
+    // this.Samothrace.children.castShadow = true
+    // this.Samothrace.children.receiveShadow = true
+    this.Samothrace.children.forEach((child) => {
+      child.castShadow = true
+    })
   }
   setMovement() {
     this.time.on('tick', () => {

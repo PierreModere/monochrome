@@ -3,9 +3,13 @@ import { AxesHelper, Object3D } from 'three'
 import AmbientLightSource from './AmbientLight.js'
 import HemisphereLightSource from './HemisphereLight.js'
 import PointLightSource from './PointLight.js'
-import PointLightSource2 from './PointLight 2'
+import PointLightSource2 from './PointLight2.js'
+import DirectionalLightSource from './DirectionalLight.js'
+import SpotLightSource from './SpotLight.js'
 import Samothrace from './Samothrace.js'
 import Room from './Room.js'
+import Plane from './Plane.js'
+import Lever from './Lever.js'
 
 export default class World {
   constructor(options) {
@@ -27,10 +31,15 @@ export default class World {
     this.setLoader()
   }
   init() {
+    this.setSamothrace()
+    this.setRoom()
+    // this.setPlane()
+    this.setLever()
     // this.setAmbientLight()
     // this.setHemisphereLight()
     this.setPointLight()
-    this.setSamothrace()
+    // this.setSpotLight()
+    // this.setDirectionalLight()
   }
   setLoader() {
     this.loadDiv = document.querySelector('.loadScreen')
@@ -59,27 +68,40 @@ export default class World {
       })
     }
   }
-  // setHemisphereLight() {
-  //   this.light = new HemisphereLightSource({
-  //     debug: this.debugFolder,
-  //   })
-  //   this.container.add(this.light.container)
-  // }
-  // setAmbientLight() {
-  //   this.light = new AmbientLightSource({
-  //     debug: this.debugFolder,
-  //   })
-  //   this.container.add(this.light.container)
-  // }
+  setHemisphereLight() {
+    this.light = new HemisphereLightSource({
+      debug: this.debugFolder,
+    })
+    this.container.add(this.light.container)
+  }
+  setAmbientLight() {
+    this.light = new AmbientLightSource({
+      debug: this.debugFolder,
+    })
+    this.container.add(this.light.container)
+  }
   setPointLight() {
     this.light = new PointLightSource({
       debug: this.debugFolder,
     })
     this.container.add(this.light.container)
-    this.light2 = new PointLightSource2({
+
+    this.light2 = new PointLightSource({
       debug: this.debugFolder,
     })
     this.container.add(this.light2.container)
+  }
+  setSpotLight() {
+    this.light = new SpotLightSource({
+      debug: this.debugFolder,
+    })
+    this.container.add(this.light.container)
+  }
+  setDirectionalLight() {
+    this.light = new DirectionalLightSource({
+      debug: this.debugFolder,
+    })
+    this.container.add(this.light.container)
   }
   setSamothrace() {
     this.Samothrace = new Samothrace({
@@ -87,10 +109,26 @@ export default class World {
       assets: this.assets,
     })
     this.container.add(this.Samothrace.container)
+  }
+  setRoom() {
     this.Room = new Room({
       time: this.time,
       assets: this.assets,
     })
     this.container.add(this.Room.container)
+  }
+  setLever() {
+    this.Lever = new Lever({
+      time: this.time,
+      assets: this.assets,
+    })
+    this.container.add(this.Lever.container)
+  }
+  setPlane() {
+    this.Plane = new Plane({
+      time: this.time,
+      assets: this.assets,
+    })
+    this.container.add(this.Plane.container)
   }
 }
