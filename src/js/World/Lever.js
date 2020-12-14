@@ -16,13 +16,10 @@ export default class Lever {
   createLever() {
     this.Lever = this.assets.models.Lever.scene
     this.container.add(this.Lever)
-    this.Lever.scale.x = 0.3
-    this.Lever.scale.y = 0.3
-    this.Lever.scale.z = 0.3
-    this.Lever.position.set(-2, 0, -3.8)
-    // console.log(this.Lever)
-    // this.mixer = new AnimationMixer(this.Lever)
-    // this.mixer.clipAction(this.Lever.container.animations[0]).play();
+    this.Lever.scale.x = 1.5
+    this.Lever.scale.y = 1.5
+    this.Lever.scale.z = 1.5
+    this.Lever.position.set(-2, 0, -28)
 
     this.Lever.children.forEach((child) => {
       child.castShadow = true

@@ -19,9 +19,9 @@ export default class Samothrace {
   createSamothrace() {
     this.Samothrace = this.assets.models.SmallSamothrace2.scene
     this.container.add(this.Samothrace)
-    this.Samothrace.scale.x = 0.2
-    this.Samothrace.scale.y = 0.2
-    this.Samothrace.scale.z = 0.2
+    this.Samothrace.scale.x = 1
+    this.Samothrace.scale.y = 1
+    this.Samothrace.scale.z = 1
     // this.Samothrace.position.z
     // this.Samothrace.children.castShadow = true
     // this.Samothrace.children.receiveShadow = true

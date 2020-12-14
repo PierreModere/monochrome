@@ -20,6 +20,8 @@ module.exports = {
       '@js': path.resolve(__dirname, '../src/js/'),
       '@tools': path.resolve(__dirname, '../src/js/Tools/'),
       '@world': path.resolve(__dirname, '../src/js/World/'),
+      '@videos': path.resolve(__dirname, '../src/videos/'),
+
     }
   },
   plugins: [

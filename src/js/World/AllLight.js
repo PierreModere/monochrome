@@ -39,7 +39,7 @@ export default class AllLightSource {
     this.light4.position.set(500, 100, 0)
     // this.container.add(this.light4)
     this.light5 = new PointLight(0xbba8f5, 1)
-    this.light5.position.set(-0.200, 3, 2)
+    this.light5.position.set(-1, 15, 10)
     this.container.add(this.light5)
     this.light6 = new PointLight(0xbba8f5, 1)
     this.light6.position.set(-0.200, 3, 1)

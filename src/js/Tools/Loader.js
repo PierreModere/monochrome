@@ -4,7 +4,7 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 
-import { TextureLoader, FontLoader } from 'three'
+import { AudioLoader, FontLoader, TextureLoader } from 'three'
 
 export default class Loader extends EventEmitter {
   constructor() {
@@ -18,6 +18,7 @@ export default class Loader extends EventEmitter {
     this.currentPercent = 0
     this.models = {}
     this.textures = {}
+    this.sounds = {}
     this.fonts = {}
 
     this.setLoaders()
@@ -35,13 +36,13 @@ export default class Loader extends EventEmitter {
 
     const textureLoader = new TextureLoader()
     const fontLoader = new FontLoader()
+    const soundLoader = new AudioLoader()
 
     this.loaders = [
       {
         filetype: ['gltf', 'glb'],
         action: (model) => {
           gltfLoader.load(
-            
             model.src,
             (loaded) => {
               this.loadComplete(model, loaded)
@@ -69,15 +70,9 @@ export default class Loader extends EventEmitter {
       {
         filetype: ['png', 'jpg', 'jpeg'],
         action: (texture) => {
-          textureLoader.load(
-            texture.src,
-            (loaded) => {
-              this.loadComplete(texture, loaded)
-            },
-            (xhr) => {
-              this.progress(xhr)
-            }
-          )
+          textureLoader.load(texture.src, (loaded) => {
+            this.loadComplete(texture, loaded)
+          })
         },
       },
       {
@@ -94,14 +89,30 @@ export default class Loader extends EventEmitter {
           )
         },
       },
+      {
+        filetype: ['mp3', 'ogg', 'wav'],
+        action: (sound) => {
+          soundLoader.load(
+            sound.src,
+            (loaded) => {
+              this.loadComplete(sound, loaded)
+            },
+            (xhr) => {
+              this.progress(xhr)
+            }
+          )
+        },
+      },
     ]
   }
   progress(xhr) {
-    this.currentPercent = Math.floor((xhr.loaded / xhr.total) * 100)
-    if (this.currentPercent === 100) {
-      this.currentPercent = 0
+    if (xhr.lengthComputable) {
+      this.currentPercent = Math.floor((xhr.loaded / xhr.total) * 100)
+      if (this.currentPercent === 100) {
+        this.currentPercent = 0
+      }
+      this.trigger('ressourceLoad')
     }
-    this.trigger('ressourceLoad')
   }
   setRessourcesList() {
     // eslint-disable-next-line
@@ -120,7 +131,11 @@ export default class Loader extends EventEmitter {
       })
     })
     // eslint-disable-next-line
-    const texturesContext = require.context('@textures', true, /\.(png|jpeg|jpg)$/)
+    const texturesContext = require.context(
+      '@textures',
+      true,
+      /\.(png|jpeg|jpg)$/
+    )
     texturesContext.keys().forEach((key) => {
       const newKey = `${key}`.substring(2)
       // eslint-disable-next-line
@@ -147,6 +162,21 @@ export default class Loader extends EventEmitter {
         ),
         src: fontSrc,
         type: 'font',
+      })
+    })
+    // eslint-disable-next-line
+    const soundsContext = require.context('@sounds', true, /\.(mp3|ogg|wav)$/)
+    soundsContext.keys().forEach((key) => {
+      const newKey = `${key}`.substring(2)
+      // eslint-disable-next-line
+      const soundSrc = require('../../sounds/' + newKey)
+      this.ressourcesList.push({
+        name: key.substring(
+          2,
+          key.length - (key.length - newKey.lastIndexOf('.') - 2)
+        ),
+        src: soundSrc.default,
+        type: 'sound',
       })
     })
     this.loadRessources(this.ressourcesList)
