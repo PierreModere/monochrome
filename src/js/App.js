@@ -1,5 +1,11 @@
-import { Raycaster, Vector2, Scene, WebGLRenderer, PCFSoftShadowMap } from 'three'
-import * as dat from 'dat.gui'
+import {
+  Raycaster,
+  Vector2,
+  Scene,
+  WebGLRenderer,
+  PCFSoftShadowMap,
+} from 'three'
+import {gsap} from "gsap"
 
 import Sizes from '@tools/Sizes.js'
 import Time from '@tools/Time.js'
@@ -8,6 +14,7 @@ import Assets from '@tools/Loader.js'
 import Camera from './Camera.js'
 import World from '@world/index.js'
 import Samothrace from '@world/Samothrace.js'
+import * as dat from 'dat.gui'
 
 var mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
 var cameraMoves = {
@@ -52,8 +59,8 @@ export default class App {
     this.renderer.setPixelRatio(window.devicePixelRatio)
     this.renderer.setSize(this.sizes.viewport.width, this.sizes.viewport.height)
     this.renderer.shadowMap.enabled = true
-this.renderer.shadowMapSoft = true
-this.renderer.shadowMap.type = PCFSoftShadowMap
+    this.renderer.shadowMapSoft = true
+    this.renderer.shadowMap.type = PCFSoftShadowMap
 
     // Resize renderer on resize event
     this.sizes.on('resize', () => {
@@ -69,12 +76,25 @@ this.renderer.shadowMap.type = PCFSoftShadowMap
       // update the picking ray with the camera and mouse position
       raycaster.setFromCamera(mouseRaycaster, this.camera.camera)
       // calculate objects intersecting the picking ray var intersects =
-      const intersects = raycaster.intersectObjects(this.scene.children[1].children[2].children[0].children)
-      
-      for (var i = 0; i < intersects.length; i++) {
-        intersects[i].object.material.color.set(0xff0000)
-        // console.log("aaaa")
-        
+      const intersects = raycaster.intersectObjects(
+        this.scene.children[1].children[2].children[0].children
+      )
+
+      if (intersects.length > 0) {
+        let samothraceColor = this.scene.children[1].children[0].children[0].children[0].material.color
+        let camera = this.scene.children[0].children[0]
+        window.addEventListener('click', function () {
+          //  console.log(scene)
+          if (intersects[0].object.name == 'Levier001') {
+            // console.log(camera)
+            samothraceColor.set(0xf0f0f0)
+            // intersects[0].object.rotation.x = 20.144
+            gsap.to( intersects[0].object.rotation, {
+              duration: 0.7,
+              x: 20.144,
+            } );
+          }
+        })
       }
     })
   }
@@ -86,7 +106,7 @@ this.renderer.shadowMap.type = PCFSoftShadowMap
         Math.min((e.clientX - mouse.x) * 0.00005, cameraMoves.speed),
         -cameraMoves.speed
       )
-            //Rotation horizontale
+      //Rotation horizontale
 
       this.world.container.rotation.x += Math.max(
         Math.min((mouse.y - e.clientY) * 0.00008, cameraMoves.speed),
@@ -95,15 +115,12 @@ this.renderer.shadowMap.type = PCFSoftShadowMap
       mouse.x = e.clientX
       mouse.y = e.clientY
     })
-    window.addEventListener(
-      'mousemove',
-      function (e) {
-        // calculate mouse position in normalized device coordinates
-        // (-1 to +1) for both components
-        mouseRaycaster.x = (e.clientX / window.innerWidth) * 2 - 1
-        mouseRaycaster.y = -(e.clientY / window.innerHeight) * 2 + 1
-      }
-    )
+    window.addEventListener('mousemove', function (e) {
+      // calculate mouse position in normalized device coordinates
+      // (-1 to +1) for both components
+      mouseRaycaster.x = (e.clientX / window.innerWidth) * 2 - 1
+      mouseRaycaster.y = -(e.clientY / window.innerHeight) * 2 + 1
+    })
   }
 
   setCamera() {

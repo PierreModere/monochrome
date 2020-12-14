@@ -10,7 +10,7 @@ import Samothrace from './Samothrace.js'
 import Room from './Room.js'
 import Plane from './Plane.js'
 import Lever from './Lever.js'
-
+import AllLightSource from './AllLight.js'
 export default class World {
   constructor(options) {
     // Set options
@@ -37,9 +37,10 @@ export default class World {
     this.setLever()
     // this.setAmbientLight()
     // this.setHemisphereLight()
-    this.setPointLight()
+    // this.setPointLight()
     // this.setSpotLight()
     // this.setDirectionalLight()
+    this.setAllLight()
   }
   setLoader() {
     this.loadDiv = document.querySelector('.loadScreen')
@@ -67,6 +68,12 @@ export default class World {
         }, 1000)
       })
     }
+  }
+  setAllLight() {
+    this.light = new AllLightSource({
+      debug: this.debugFolder,
+    })
+    this.container.add(this.light.container)
   }
   setHemisphereLight() {
     this.light = new HemisphereLightSource({
