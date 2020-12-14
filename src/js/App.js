@@ -161,10 +161,10 @@ export default class App {
       time: this.time,
       debug: this.debug,
       assets: this.assets,
+      camera: this.camera.camera
     })
     // Add world to scene
     this.scene.add(this.world.container)
-    // console.log(this.scene.children[1].children)
   }
   setConfig() {
     if (window.location.hash === '#debug') {

@@ -14,6 +14,8 @@ export default class World {
     this.time = options.time
     this.debug = options.debug
     this.assets = options.assets
+    this.camera = options.camera
+
 
     // Set up
     this.container = new Object3D()
@@ -36,7 +38,6 @@ export default class World {
   }
 
   start() {
-    this.setIntro()
     this.setSounds()
   }
   setLoader() {
@@ -56,15 +57,30 @@ export default class World {
       })
 
       this.assets.on('ressourcesReady', () => {
-        setTimeout(() => {
-          this.init()
-          this.loadDiv.style.opacity = 0
+        this.button = document.createElement('button')
+        this.button.innerHTML = "Commencer l'expérience"
+        this.button.classList.add('start-button')
+        this.loadModels.style.display = 'none'
+        this.progress.style.display = 'none'
+        this.loadDiv.append(this.button)
+        this.button.addEventListener('click', () => {
           setTimeout(() => {
-            this.loadDiv.remove()
-          }, 550)
-        }, 1000)
+            this.loadDiv.style.opacity = 0
+            setTimeout(() => {
+              this.loadDiv.remove()
+            }, 550)
+          }, 1000)
+          this.start()
+        })
+        this.init()
       })
     }
+  }
+  setSounds() {
+    this.sounds = new Sounds({
+      assets: this.assets,
+      camera: this.camera,
+    })
   }
   setAllLight() {
     this.light = new AllLightSource({

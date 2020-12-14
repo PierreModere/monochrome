@@ -9,7 +9,7 @@ export default class Sounds {
     // Set up
     this.listener = new AudioListener()
     this.camera.add(this.listener)
-    // this.setBackgroundAudio()
+    this.setBackgroundAudio()
   }
   setBackgroundAudio() {
     this.backgroundSound = new Audio(this.listener)

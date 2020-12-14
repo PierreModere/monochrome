@@ -1,29 +1,47 @@
-.loadScreen
-  position absolute
-  top 0
-  width 100%
-  height 100%
-  background-color #012FA7
-  display flex
-  flex-direction column
-  justify-content center
-  align-items center
-  transition 0.55s opacity ease-out
+.loadScreen {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.55s opacity ease-out;
 
-.load
-  margin 0 0 30px 0
-  padding 0
-  color #5F7CC8
-  font-family Montserrat
-  user-select none
+  .start-button {
+    background-color: #012FA7;
+    color: #fff;
+    height: 60px;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 35px;
+    outline: none;
+    cursor: pointer;
+  }
+}
 
-.progressBar
-  border-radius 8px
-  width 300px
-  background-color #5F7CC8
+.load {
+  margin: 0 0 30px 0;
+  padding: 0;
+  color: #012FA7;
+  font-family: Montserrat;
+  user-select: none;
+}
 
-.progress
-  border-radius 8px
-  width 0px
-  height 7px
-  background-color #fff
+.progressBar {
+  border-radius: 8px;
+  width: 300px;
+  background-color: #012FA7;
+}
+
+.progress {
+  border-radius: 8px;
+  width: 0px;
+  height: 7px;
+  background-color: #012FA7;
+}
