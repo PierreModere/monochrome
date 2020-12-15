@@ -24,7 +24,7 @@ export default class AllLightSource {
     }
   }
   createAmbientLight() {
-    // this.light = new AmbientLight(0x404040, 0.2)
+    // this.light = new AmbientLight(0xffffff, 0.2)
     // this.container.add(this.light)
     this.light2 = new DirectionalLight(0xbba8f5, 1)
     this.light2.position.set(0, 1, 4)
@@ -39,14 +39,15 @@ export default class AllLightSource {
     this.light4.position.set(500, 100, 0)
     // this.container.add(this.light4)
     this.light5 = new PointLight(0xbba8f5, 1)
-    this.light5.position.set(-1, 15, 10)
+    this.light5.position.set(-1, 3, 3)
     this.container.add(this.light5)
-    this.light6 = new PointLight(0xbba8f5, 1)
-    this.light6.position.set(-0.200, 3, 1)
+    this.light6 = new PointLight(0xffffff, 1)
+    this.light6.power=25
+    this.light6.position.set(0, 12, 3)
     this.light6.castShadow = true
     this.helper2 = new PointLightHelper(this.light6, 5)
     // this.container.add(this.helper2)
-    this.helper2.castShadow=false
+    this.helper2.castShadow = false
     // this.container.add(this.light6)
     this.container.children.forEach((light) => {
       light.castShadow = true

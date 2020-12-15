@@ -1,12 +1,14 @@
 import { AxesHelper, Object3D } from 'three'
 
 import Samothrace from './Samothrace.js'
+import Workshop from './Workshop.js'
 import Room from './Room.js'
-import Plane from './Plane.js'
+import Atelier from './Atelier.js'
 import Lever from './Lever.js'
 import AllLightSource from './AllLight.js'
 import PaintAnimationSource from './PaintAnimation.js'
 import Sounds from './Sounds'
+import { hoverFunc, unhoverFunc } from '../mouseCursor.js'
 
 export default class World {
   constructor(options) {
@@ -15,7 +17,6 @@ export default class World {
     this.debug = options.debug
     this.assets = options.assets
     this.camera = options.camera
-
 
     // Set up
     this.container = new Object3D()
@@ -29,17 +30,38 @@ export default class World {
 
     this.setLoader()
   }
-  init() {
-    this.setSamothrace()
-    this.setRoom()
-    this.setLever()
-    this.setAllLight()
-    this.setPaintAnimation()
+  init(sceneNumber) {
+    setTimeout(() => {
+      document.querySelector('.menu').style.opacity = '0'
+      setTimeout(() => {
+        document.querySelector('.menu').remove()
+      }, 550)
+    }, 730)
+    switch (sceneNumber) {
+      case 'scene1':
+        // this.setSamothrace()
+        this.setAtelier()
+        // this.setRoom()
+        this.setLever()
+        this.setAllLight()
+        this.setPaintAnimation()
+        this.setSounds()
+        break
+      case 'scene2':
+        this.setSamothrace()
+        this.setRoom()
+        this.setLever()
+        this.setAllLight()
+        this.setPaintAnimation()
+        this.setSounds()
+        break
+      case 'scene3':
+        this.setWorkshop()
+        this.setSounds()
+        break
+    }
   }
 
-  start() {
-    this.setSounds()
-  }
   setLoader() {
     this.loadDiv = document.querySelector('.loadScreen')
     this.loadModels = this.loadDiv.querySelector('.load')
@@ -63,16 +85,24 @@ export default class World {
         this.loadModels.style.display = 'none'
         this.progress.style.display = 'none'
         this.loadDiv.append(this.button)
+        this.button.addEventListener('mouseover', hoverFunc)
+        this.button.addEventListener('mouseout', unhoverFunc)
         this.button.addEventListener('click', () => {
+          let menu = document.querySelector('.menu')
           setTimeout(() => {
             this.loadDiv.style.opacity = 0
             setTimeout(() => {
               this.loadDiv.remove()
             }, 550)
-          }, 1000)
-          this.start()
+          }, 400)
+          menu.style.visibility = 'visible'
+          menu.buttons = menu.querySelectorAll('.scene-button')
+          for (let button of menu.buttons) {
+            button.addEventListener('click', (e) => {
+              this.init(button.getAttribute('id'))
+            })
+          }
         })
-        this.init()
       })
     }
   }
@@ -80,6 +110,7 @@ export default class World {
     this.sounds = new Sounds({
       assets: this.assets,
       camera: this.camera,
+      src: this.assets.sounds.test,
     })
   }
   setAllLight() {
@@ -88,41 +119,7 @@ export default class World {
     })
     this.container.add(this.light.container)
   }
-  // setHemisphereLight() {
-  //   this.light = new HemisphereLightSource({
-  //     debug: this.debugFolder,
-  //   })
-  //   this.container.add(this.light.container)
-  // }
-  // setAmbientLight() {
-  //   this.light = new AmbientLightSource({
-  //     debug: this.debugFolder,
-  //   })
-  //   this.container.add(this.light.container)
-  // }
-  // setPointLight() {
-  //   this.light = new PointLightSource({
-  //     debug: this.debugFolder,
-  //   })
-  //   this.container.add(this.light.container)
 
-  //   this.light2 = new PointLightSource({
-  //     debug: this.debugFolder,
-  //   })
-  //   this.container.add(this.light2.container)
-  // }
-  // setSpotLight() {
-  //   this.light = new SpotLightSource({
-  //     debug: this.debugFolder,
-  //   })
-  //   this.container.add(this.light.container)
-  // }
-  // setDirectionalLight() {
-  //   this.light = new DirectionalLightSource({
-  //     debug: this.debugFolder,
-  //   })
-  //   this.container.add(this.light.container)
-  // }
   setSamothrace() {
     this.Samothrace = new Samothrace({
       time: this.time,
@@ -143,6 +140,13 @@ export default class World {
       assets: this.assets,
     })
     this.container.add(this.Lever.container)
+  }
+  setAtelier() {
+    this.Atelier = new Atelier({
+      time: this.time,
+      assets: this.assets,
+    })
+    this.container.add(this.Atelier.container)
   }
   setPaintAnimation() {
     this.Video = new PaintAnimationSource({

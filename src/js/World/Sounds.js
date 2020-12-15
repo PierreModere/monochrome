@@ -5,6 +5,7 @@ export default class Sounds {
     // Set options
     this.assets = options.assets
     this.camera = options.camera
+    this.src = options.src
 
     // Set up
     this.listener = new AudioListener()
@@ -13,10 +14,10 @@ export default class Sounds {
   }
   setBackgroundAudio() {
     this.backgroundSound = new Audio(this.listener)
-    this.backgroundSound.setBuffer(this.assets.sounds.background)
+    this.backgroundSound.setBuffer(this.src)
 
     this.backgroundSound.setLoop(true)
-    this.backgroundSound.setLoopEnd(this.assets.sounds.background.duration - 22)
+    // this.backgroundSound.setLoopEnd(this.assets.sounds.test.duration - 22)
 
     this.backgroundSound.setVolume(0.2)
     this.backgroundSound.play()

@@ -15,6 +15,7 @@ import Camera from './Camera.js'
 import World from '@world/index.js'
 import Samothrace from '@world/Samothrace.js'
 import * as dat from 'dat.gui'
+import './mouseCursor.js'
 
 var allowMove = true
 var mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
@@ -41,11 +42,13 @@ export default class App {
     this.setRenderer()
     this.setCamera()
     this.setWorld()
-    this.setMouseRotation()
+    // this.setMouseRotation()
   }
   setRenderer() {
     // Set scene
     this.scene = new Scene()
+
+    this.atelier = new Scene()
 
     // Set renderer
     this.renderer = new WebGLRenderer({
@@ -114,7 +117,6 @@ export default class App {
       gsap.to(world.rotation, { y: 0, duration: 1, ease: Power3.easeOut })
       allowMove = false
       video.play()
-
     }
   }
 
@@ -161,7 +163,7 @@ export default class App {
       time: this.time,
       debug: this.debug,
       assets: this.assets,
-      camera: this.camera.camera
+      camera: this.camera.camera,
     })
     // Add world to scene
     this.scene.add(this.world.container)

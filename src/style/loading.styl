@@ -1,6 +1,12 @@
+@font-face {
+  font-family: 'Basis Grotesque';
+  src: url('@fonts/Basis-Grotesque-Pro-Black.ttf');
+}
+
 .loadScreen {
   position: absolute;
   top: 0;
+  z-index: 2;
   width: 100%;
   height: 100%;
   background-color: #fff;
@@ -22,6 +28,8 @@
     border-radius: 35px;
     outline: none;
     cursor: pointer;
+    font-family: 'Basis Grotesque';
+    cursor: none;
   }
 }
 
@@ -29,14 +37,14 @@
   margin: 0 0 30px 0;
   padding: 0;
   color: #012FA7;
-  font-family: Montserrat;
+  font-family: 'Basis Grotesque';
   user-select: none;
 }
 
 .progressBar {
   border-radius: 8px;
   width: 300px;
-  background-color: #012FA7;
+  background-color: #ffffff;
 }
 
 .progress {

@@ -51,7 +51,7 @@ export default class Camera {
       this.camera,
       this.renderer.domElement
     )
-    this.orbitControls.enabled = false
+    this.orbitControls.enabled = true
     // this.orbitControls.enableKeys = false
     // this.orbitControls.zoomSpeed = 1
     // this.orbitControls.enableZoom = false;

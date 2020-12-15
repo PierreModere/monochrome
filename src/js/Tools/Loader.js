@@ -62,7 +62,7 @@ export default class Loader extends EventEmitter {
               this.loadComplete(model, loaded)
             },
             (xhr) => {
-              this.progress(xhr)
+              this.progress(xhr) 
             }
           )
         },
