@@ -16,9 +16,9 @@ export default class Atelier {
   createAtelier() {
     this.Atelier = this.assets.models.Atelier.scene
     this.container.add(this.Atelier)
-    this.Atelier.scale.x = 1
-    this.Atelier.scale.y = 1
-    this.Atelier.scale.z = 1
+    this.Atelier.scale.x = 0.5
+    this.Atelier.scale.y = 0.5
+    this.Atelier.scale.z = 0.5
     this.Atelier.children.forEach((child) => {
       child.castShadow = true
     })

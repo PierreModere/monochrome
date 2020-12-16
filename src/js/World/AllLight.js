@@ -38,11 +38,14 @@ export default class AllLightSource {
     this.light4 = new PointLight(0xc4c4c4, 1)
     this.light4.position.set(500, 100, 0)
     // this.container.add(this.light4)
-    this.light5 = new PointLight(0xbba8f5, 1)
-    this.light5.position.set(-1, 3, 3)
+    this.light5 = new PointLight(0xffffff, 1)
+    this.light5.position.set(340, -40, -150)
+    this.light5.power = 22
+    this.light5.castShadow = true
+
     this.container.add(this.light5)
     this.light6 = new PointLight(0xffffff, 1)
-    this.light6.power=25
+    this.light6.power = 25
     this.light6.position.set(0, 12, 3)
     this.light6.castShadow = true
     this.helper2 = new PointLightHelper(this.light6, 5)

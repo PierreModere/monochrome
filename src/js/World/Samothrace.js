@@ -14,11 +14,14 @@ export default class Samothrace {
     this.setMovement()
   }
   createSamothrace() {
-    this.Samothrace = this.assets.models.SmallSamothrace2.scene
+    this.Samothrace = this.assets.models.SamothraceBaked.scene
     this.container.add(this.Samothrace)
-    this.Samothrace.scale.x = 1
-    this.Samothrace.scale.y = 1
-    this.Samothrace.scale.z = 1
+    this.Samothrace.scale.x = 0.5
+    this.Samothrace.scale.y = 0.5
+    this.Samothrace.scale.z = 0.5
+
+    this.Samothrace.position.set(345, -90.5, -150)
+
     this.Samothrace.children.forEach((child) => {
       child.castShadow = true
     })

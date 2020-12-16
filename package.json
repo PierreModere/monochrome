@@ -4,7 +4,8 @@
   "description": "Three template",
   "main": "index.js",
   "dependencies": {
-    "gsap": "^3.5.1"
+    "gsap": "^3.5.1",
+    "ray-tracing-renderer": "^0.10.15"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -39,7 +39,7 @@ export default class World {
     }, 730)
     switch (sceneNumber) {
       case 'scene1':
-        // this.setSamothrace()
+        this.setSamothrace()
         this.setAtelier()
         // this.setRoom()
         this.setLever()

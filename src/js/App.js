@@ -4,8 +4,11 @@ import {
   Scene,
   WebGLRenderer,
   PCFSoftShadowMap,
+  sRGBEncoding,
 } from 'three'
 import { gsap, Power3 } from 'gsap'
+import { RayTracingRenderer } from 'ray-tracing-renderer'
+
 
 import Sizes from '@tools/Sizes.js'
 import Time from '@tools/Time.js'
@@ -13,7 +16,7 @@ import Assets from '@tools/Loader.js'
 
 import Camera from './Camera.js'
 import World from '@world/index.js'
-import Samothrace from '@world/Samothrace.js'
+
 import * as dat from 'dat.gui'
 import './mouseCursor.js'
 
@@ -65,6 +68,8 @@ export default class App {
     this.renderer.shadowMap.enabled = true
     this.renderer.shadowMapSoft = true
     this.renderer.shadowMap.type = PCFSoftShadowMap
+    this.renderer.outputEncoding = sRGBEncoding
+    this.renderer.physicallyCorrectLights = true
 
     // Resize renderer on resize event
     this.sizes.on('resize', () => {
@@ -78,6 +83,7 @@ export default class App {
     this.time.on('tick', () => {
       this.renderer.render(this.scene, this.camera.camera)
       if (this.scene.children[1].children[0] != undefined) {
+        this.camera.camera.lookAt(350, -70.5, -150)
         // this.camera.camera.lookAt(
         //   this.scene.children[1].children[0].children[0].position.x,
         //   8,
