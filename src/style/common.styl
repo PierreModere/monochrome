@@ -37,14 +37,14 @@ body {
   top: -10px;
   border-radius: 100%;
   z-index: 1;
-  // user-select: none;
-  // pointer-events: none;
+  user-select: none;
+  pointer-events: none;
   z-index: 10000;
   transform: scale(1);
-  // &.active {
-  // opacity: 1;
-  // transform: scale(0);
-  // }
+  &.active {
+  opacity: 1;
+  transform: scale(0);
+  }
 }
 
 .circle-follow {
@@ -59,9 +59,9 @@ body {
   user-select: none;
   pointer-events: none;
   z-index: 10000;
-  // overflow: hidden;
+  overflow: hidden;
   transform: scale(1);
-  // &.active {
-  // transform: scale(3);
-  // }
+  &.active {
+  transform: scale(3);
+  }
 }

@@ -8,7 +8,8 @@ import Lever from './Lever.js'
 import AllLightSource from './AllLight.js'
 import PaintAnimationSource from './PaintAnimation.js'
 import Sounds from './Sounds'
-import { hoverFunc, unhoverFunc } from '../mouseCursor.js'
+import { movCircle, hoverFunc, unhoverFunc } from '../mouseCursor.js'
+import lottie from 'lottie-web'
 
 export default class World {
   constructor(options) {
@@ -28,6 +29,14 @@ export default class World {
       this.debugFolder.open()
     }
 
+    this.loaderAnimation = lottie.loadAnimation({
+      container: document.getElementById('bm'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'loader.json',
+    })
+
     this.setLoader()
   }
   init(sceneNumber) {
@@ -39,16 +48,17 @@ export default class World {
     }, 730)
     switch (sceneNumber) {
       case 'scene1':
-        this.setSamothrace()
+        // this.setSamothrace()
         this.setAtelier()
         // this.setRoom()
         this.setLever()
         this.setAllLight()
         this.setPaintAnimation()
         this.setSounds()
+        this.setSpotLight()
         break
       case 'scene2':
-        this.setSamothrace()
+        // this.setSamothrace()
         this.setRoom()
         this.setLever()
         this.setAllLight()
@@ -66,23 +76,28 @@ export default class World {
     this.loadDiv = document.querySelector('.loadScreen')
     this.loadModels = this.loadDiv.querySelector('.load')
     this.progress = this.loadDiv.querySelector('.progress')
+    this.loaderAnimationContainer = this.loadDiv.querySelector('#bm')
 
     if (this.assets.total === 0) {
       this.init()
       this.loadDiv.remove()
     } else {
       this.assets.on('ressourceLoad', () => {
-        this.progress.style.width = this.loadModels.innerHTML = `${
-          Math.floor((this.assets.done / this.assets.total) * 100) +
-          Math.floor((1 / this.assets.total) * this.assets.currentPercent)
-        }%`
+        // this.progress.style.width = this.loadModels.innerHTML = `${
+        //   Math.floor((this.assets.done / this.assets.total) * 100) +
+        //   Math.floor((1 / this.assets.total) * this.assets.currentPercent)
+        // }%`
       })
 
       this.assets.on('ressourcesReady', () => {
+        document
+          .querySelector('.loadScreen')
+          .addEventListener('mousemove', movCircle)
         this.button = document.createElement('button')
         this.button.innerHTML = "Commencer l'expérience"
         this.button.classList.add('start-button')
         this.loadModels.style.display = 'none'
+        this.loaderAnimationContainer.style.display = 'none'
         this.progress.style.display = 'none'
         this.loadDiv.append(this.button)
         this.button.addEventListener('mouseover', hoverFunc)
@@ -154,5 +169,12 @@ export default class World {
       assets: this.assets,
     })
     this.container.add(this.Video.container)
+  }
+
+  setSpotLight() {
+    this.light = new SpotLightSource({
+      debug: this.debugFolder,
+    })
+    this.container.add(this.light.container)
   }
 }

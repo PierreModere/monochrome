@@ -18,8 +18,11 @@ export default class SpotLightSource {
   }
   createSpotLight() {
     this.light = new SpotLight(this.params.color, 5)
+    this.light.position.set(500, 100, 0)
     this.light.castShadow = true
     this.light.shadowDarkness = 0.5
+    this.spotLight.shadow.mapSize.width = 512
+    this.spotLight.shadow.mapSize.height = 512
     this.container.add(this.light)
   }
   setDebug() {

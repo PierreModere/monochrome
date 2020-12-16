@@ -7,8 +7,6 @@ import {
   sRGBEncoding,
 } from 'three'
 import { gsap, Power3 } from 'gsap'
-import { RayTracingRenderer } from 'ray-tracing-renderer'
-
 
 import Sizes from '@tools/Sizes.js'
 import Time from '@tools/Time.js'
@@ -45,7 +43,7 @@ export default class App {
     this.setRenderer()
     this.setCamera()
     this.setWorld()
-    // this.setMouseRotation()
+    this.setMouseRotation()
   }
   setRenderer() {
     // Set scene
@@ -83,12 +81,10 @@ export default class App {
     this.time.on('tick', () => {
       this.renderer.render(this.scene, this.camera.camera)
       if (this.scene.children[1].children[0] != undefined) {
-        this.camera.camera.lookAt(350, -70.5, -150)
-        // this.camera.camera.lookAt(
-        //   this.scene.children[1].children[0].children[0].position.x,
-        //   8,
-        //   this.scene.children[1].children[0].children[0].position.z
-        // )
+        if (this.statue == null || this.statue == undefined) {
+          this.statue = this.scene.children[1].children[0].children[0].children[0].children[2]
+        }
+        // this.camera.camera.lookAt(this.statue.position)
 
         // update the picking ray with the camera and mouse position
         raycaster.setFromCamera(mouseRaycaster, this.camera.camera)
@@ -154,6 +150,7 @@ export default class App {
   setCamera() {
     // Create camera instance
     this.camera = new Camera({
+      time: this.time,
       sizes: this.sizes,
       renderer: this.renderer,
       debug: this.debug,

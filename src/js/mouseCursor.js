@@ -5,7 +5,7 @@ import { gsap, Power1 } from 'gsap'
 var circle = document.querySelector('.circle')
 var follow = document.querySelector('.circle-follow')
 
-function movCircle(e) {
+export function movCircle(e) {
   gsap.to(
     circle,
     0.1,
@@ -46,7 +46,7 @@ export function unhoverFunc(e) {
   })
 }
 
-window.addEventListener('mousemove', movCircle)
+document.querySelector(".menu").addEventListener('mousemove', movCircle)
 
 let buttons = document.querySelectorAll('.scene-button')
 buttons.forEach((button) => {

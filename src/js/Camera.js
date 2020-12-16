@@ -1,10 +1,21 @@
-import { Object3D, PerspectiveCamera } from 'three'
+import {
+  Object3D,
+  PerspectiveCamera,
+  CatmullRomCurve3,
+  Vector3,
+  Euler,
+} from 'three'
+import { gsap, Power3 } from 'gsap'
+
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js'
+
 import Samothrace from './World/Samothrace.js'
 
 export default class Camera {
   constructor(options) {
     // Set Options
+    this.time = options.time
     this.sizes = options.sizes
     this.renderer = options.renderer
     this.debug = options.debug
@@ -15,7 +26,8 @@ export default class Camera {
 
     this.setCamera()
     this.setPosition()
-    this.setOrbitControls()
+    // this.setOrbitControls()
+    this.setMovement()
   }
   setCamera() {
     // Create camera
@@ -34,10 +46,19 @@ export default class Camera {
       this.camera.updateProjectionMatrix()
     })
   }
+
   setPosition() {
-    // Set camera position
-    this.camera.position.set(185.0, -50, -150)
-    this.camera.rotation.set(0, 0, 0)
+    this.camera.position.x = 80
+    this.camera.position.y = 120
+    this.camera.position.z = -180
+    this.camera.rotation.y = -Math.PI / 2
+    setTimeout(() => {
+      gsap.to(this.camera.position, {
+        duration: 2,
+        x: 165,
+        y: 95,
+      })
+    }, 10000)
   }
 
   setOrbitControls() {
@@ -46,6 +67,7 @@ export default class Camera {
       this.camera,
       this.renderer.domElement
     )
+
     this.orbitControls.enabled = false
     // this.orbitControls.enableKeys = false
     // this.orbitControls.zoomSpeed = 1
@@ -58,6 +80,12 @@ export default class Camera {
       this.debugFolder
         .add(this.orbitControls, 'enabled')
         .name('Enable Orbit Control')
+        .add(this.controls, 'enabled')
+        .name('Enable Orbit Control')
     }
+  }
+
+  setMovement() {
+    this.time.on('tick', () => {})
   }
 }
