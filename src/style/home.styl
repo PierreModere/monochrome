@@ -1,0 +1,81 @@
+@keyframes slideUp {
+    from {
+        transform: translateY(45px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.home {
+    display: none;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: opacity 0.5s linear;
+    padding-top: 180px;
+
+    img {
+        position: absolute;
+        z-index: 3;
+        top: -55px;
+        pointer-events: none;
+        animation: slideUp 0.5s 0.4s ease both;
+    }
+
+    .title-container {
+        width: 1310px;
+        height: 445px;
+        background-image: url('../img/home_background.png');
+        box-shadow: 10px 10px 3px 0px rgba(0, 36, 128, 0.3);
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: slideUp 0.8s ease both;
+
+        h1 {
+            height: 100%;
+            width: 800px;
+            color: white;
+            -webkit-text-stroke: 3px rgba(208, 67, 117, 0.5);
+            font-size: 125px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .start-button {
+        margin-top: 60px;
+        color: #fff;
+        width: 430px;
+        height: 75px;
+        font-size: 30px;
+        background-image: url('../img/button_background.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        // padding: 15px 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 35px;
+        outline: none;
+        font-family: 'Basis Grotesque';
+        cursor: none;
+        box-shadow: 8px 8px 2px 0px rgba(0, 36, 128, 0.3);
+        -webkit-text-stroke: 1px rgba(208, 67, 117, 0.5);
+        animation: slideUp 0.8s 0.2s ease both;
+    }
+}

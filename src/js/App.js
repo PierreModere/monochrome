@@ -43,13 +43,11 @@ export default class App {
     this.setRenderer()
     this.setCamera()
     this.setWorld()
-    this.setMouseRotation()
+    // this.setMouseRotation()
   }
   setRenderer() {
     // Set scene
     this.scene = new Scene()
-
-    this.atelier = new Scene()
 
     // Set renderer
     this.renderer = new WebGLRenderer({

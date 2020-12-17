@@ -1,0 +1,59 @@
+#anth {
+    display: none;
+    transition: 0.5s 1s opacity ease-out;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+}
+
+.bodies {
+    position: absolute;
+    z-index: 2;
+}
+
+.taches {
+    position: absolute;
+    z-index: 1;
+}
+
+.taches1, .taches3, .taches2 {
+    position: absolute;
+    display: none;
+}
+
+.object {
+    display: none;
+    opacity: 0;
+    transition: 0.75s opacity ease;
+}
+
+.tache, .background {
+    display: none;
+    opacity: 0;
+    transition: 0.75s 0.2s opacity ease;
+}
+
+.btn {
+    position: absolute;
+    display: none;
+    z-index: 4 !important;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-end;
+    opacity: 0;
+    transition: 0.75s opacity ease;
+
+    a {
+        width: 240px;
+        height: 55px;
+        margin-bottom: 50px;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}

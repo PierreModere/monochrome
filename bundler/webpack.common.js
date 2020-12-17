@@ -21,6 +21,7 @@ module.exports = {
       '@tools': path.resolve(__dirname, '../src/js/Tools/'),
       '@world': path.resolve(__dirname, '../src/js/World/'),
       '@videos': path.resolve(__dirname, '../src/videos/'),
+      '@img': path.resolve(__dirname, '../src/img/'),
 
     }
   },

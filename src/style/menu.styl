@@ -9,26 +9,27 @@
   z-index: 1;
   width: 100vw;
   height: 100vh;
-  background-color: #fff;
+  background-color: #F5F5F5;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  transition: 0.55s opacity ease-out;
+  transition: 1s opacity ease;
   visibility: hidden;
 
-  .scene-button {
-    background-color: #012FA7;
-    color: #fff;
-    height: 60px;
-    padding: 15px 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 35px;
-    outline: none;
-    cursor: pointer;
-    font-family: 'Basis Grotesque';
-    cursor: none;
+  #svg-menu {
+    position: absolute;
+    z-index: 2;
+
+    .scene-button {
+      fill: transparent;
+    }
+  }
+
+  img {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: auto;
+    pointer-events: none;
   }
 }

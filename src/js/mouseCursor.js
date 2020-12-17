@@ -42,14 +42,22 @@ export function unhoverFunc(e) {
   gsap.to(follow, 0.3, {
     scale: 1,
     borderColor: '#012FA7',
-
   })
 }
 
-document.querySelector(".menu").addEventListener('mousemove', movCircle)
+document.querySelector('.menu').addEventListener('mousemove', movCircle)
 
 let buttons = document.querySelectorAll('.scene-button')
 buttons.forEach((button) => {
   button.addEventListener('mouseover', hoverFunc)
   button.addEventListener('mouseout', unhoverFunc)
 })
+
+export function removeCircles() {
+  circle.style.opacity = 0
+  follow.style.opacity = 0
+  setTimeout(() => {
+    circle.style.display = 'none'
+    follow.style.display = 'none'
+  }, 500)
+}

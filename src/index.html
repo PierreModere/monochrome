@@ -8,21 +8,168 @@
     <title>Monochrome</title>
   </head>
   <body>
+    <div class="loadScreen">
+      <div id="bm"></div>
+    </div>
     <div class="circle"></div>
     <div class="circle-follow"></div>
     <div class="menu">
-      <div class="scene-button" id="scene1">Samothrace</div>
-      <div class="scene-button" id="scene2">Anthropométries</div>
-      <div class="scene-button" id="scene3">Peintures de feu</div>
+      <svg id="svg-menu" viewBox="0 0 1920 1080">
+        <path
+          id="scene1"
+          class="scene-button cls-3"
+          d="M787.78,407.06c1.47,18.43-7,32.67-16.59,46.46-14.07,20.29-35.58,30.82-56,43.07-14.29,8.59-30.05,14.93-42.35,26.77-9.86,9.51-16,21.53-22.92,33-12.88,21.45-18.12,45.53-23.12,69.66-4.37,21.14-8.51,42.34-15.15,62.93-4.67,14.5-14.49,24.74-26.05,34.35C570.4,736,554,737.82,535.7,733.26c-10.81-2.68-21.71-4.55-31.69-10.15-8.88-5-13.91-12.4-17.65-21.43-7.25-17.44-9.34-35.94-12.05-54.37-2.05-14-5.05-27.79-6.52-41.86-1.45-13.79-9.24-24.6-16.66-35.69-9-13.39-21.15-23.23-33.46-33.23-13.29-10.78-26.27-22.12-31.2-39.71a53,53,0,0,1-2-10.73c-1.09-16.9.36-33.33,11.6-47.19a72.81,72.81,0,0,1,11.27-11.13c17.06-13.58,27.35-31.66,35-51.77,6.73-17.69,12.46-35.84,21.81-52.46,8.53-15.17,18.62-29.21,31.92-40.52,14.26-12.13,30.72-19.78,49.09-24.29,32.08-7.86,63.25-2.77,94.74,3.4,22.37,4.38,43.15,12.44,62.92,23.27,15.51,8.5,30.57,18.12,42.3,31.43,17.65,20,32.91,41.8,39.74,68.24C786.76,392.45,788.55,399.93,787.78,407.06Z"
+        />
+        <path
+          id="scene2"
+          class="scene-button cls-1"
+          d="M1203.18,473.35a200,200,0,0,1-10.11,66.51,180.13,180.13,0,0,1-25.2,49.07c-8.26,11.46-16.18,23.17-24.3,34.73-13.73,19.53-33.75,29.08-55.72,36.29-20,6.58-40,4.37-60.22,2.51-20-1.85-40.14-4.18-60.26-1.41C949.55,663.5,931.72,666.54,917,678c-9,6.95-15.81,16.16-23.59,24.36-19.89,20.92-42,38.7-68.52,50.71-10.2,4.63-21,6.35-32.06,6.51-17.2.25-34.49.47-49.6-9.85-19.37-13.23-36.65-28.47-50.36-47.88A168.45,168.45,0,0,1,674,667.36c-5.64-14-6.8-28.49-4.67-43.56,1.9-13.34,5.36-25.92,11.4-37.95a92.35,92.35,0,0,1,35.69-38.65c6.61-4,11.71-9.71,18-14.09,12.14-8.45,25.55-14.18,39.21-19.31,19.05-7.17,37.75-15.13,54.66-26.47,14.26-9.56,24.43-23.05,31-38.88,3.2-7.71,2.43-16.4,4.34-24.49,5-21.2,5.79-43.16,11.58-64.2,2.64-9.57,4.57-19.45,9.82-28.15,8.08-13.38,20.17-22.24,33.24-30.16,20.85-12.63,44-16.44,67.73-18,12.76-.85,25.49-1.73,38.32-1.38a137.69,137.69,0,0,1,38.22,6.55c22.07,7,43.45,15.81,63,28.26,11.63,7.4,23.86,14.27,33.9,23.76a126,126,0,0,1,37,64.31C1201.68,427.26,1205.22,449.62,1203.18,473.35Z"
+        />
+        <path
+          id="scene3"
+          class="scene-button cls-2"
+          d="M1375.26,784.58c-28.74-.15-56.51-5-83.18-16.15-27.81-11.59-48.38-31.8-64.2-56.37-12.46-19.33-17.68-41.6-18.94-64.89-1.67-30.77,7.31-59.21,17.58-87.32,4-11,9.87-21.39,13.92-32.52,10.75-29.55,11.43-59.43,4.52-89.88-4.89-21.55-10.11-43.09-11.65-65.24-1.47-21,1-41.66,9.23-61.16,10-23.53,28.59-38.49,51.41-48.35a122.54,122.54,0,0,1,55.55-10.24c9.43.49,19,1.19,28.11,3.92,16.39,4.89,27.53,16.5,36.72,30,12.84,18.87,23.24,39.22,33.59,59.52A110.28,110.28,0,0,0,1482.31,386c15.46,11.1,32.81,18.8,50.23,26.26,9.5,4.08,18.66,8.65,27.08,14.8,9.09,6.64,13.7,16.09,16,26.32,2.93,13,1.75,25.53-5,38.06-9.36,17.27-21.58,32.34-33,48.08-14,19.4-26.66,39.6-31.46,63.46-3.93,19.59-5.7,39.49-6.49,59.49-.56,14.29-.77,28.58-2.54,42.84-1.95,15.71-6.89,29.49-18.68,40.68A143.23,143.23,0,0,1,1429,777C1411.67,783.38,1393.47,784.06,1375.26,784.58Z"
+        />
+      </svg>
+      <img src="./img/menu-img.png" />
     </div>
-    <div class="loadScreen">
-      <div id="bm"></div>
+    <div class="home">
+      <img
+        src="./img/signature.png"
+        style="position: absolute; z-index: 3; top: -55px; pointer-events: none"
+      />
+      <div class="title-container"><h1>monochrome</h1></div>
+      <button class="start-button">Commencer l'expérience</button>
+    </div>
 
-      <h1 class="load"></h1>
-      <div class="progressBar">
-        <div class="progress"></div>
+    <div id="lanceflamme">
+      <svg
+        id="demo"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0"
+        y="0"
+        width="1600"
+        height="900"
+        viewBox="0 0 1600 900"
+      >
+        <defs>
+          <radialGradient id="maskGradient">
+            <stop offset="50%" stop-color="#fff" />
+            <stop offset="100%" stop-color="#000" />
+          </radialGradient>
+          <mask id="theMask">
+            <circle
+              id="masker"
+              r="80"
+              fill="url(#maskGradient)"
+              cx="800"
+              cy="450"
+            />
+          </mask>
+        </defs>
+        <image
+          id="lines"
+          href="./img/feu/fond.jpg"
+          x="0"
+          y="0"
+          width="1600"
+          height="900"
+        />
+        <image id="lines" x="0" y="0" width="1920" height="1080" />
+        <g id="maskReveal" mask="url(#theMask)">
+          <image
+            id="regular"
+            class="object atelier"
+            data-value="3"
+            href="./img/feu/atelier.png"
+            x="0"
+            y="0"
+            width="1920"
+            height="1080"
+          />
+        </g>
+      </svg>
+    </div>
+    <div id="anth">
+      <div class="btn">
+        <a class="" href="videos/anthropometries.mp4"
+          ><img class="" src="./img/anthropo/btnBackground.png"
+        /></a>
+      </div>
+      <div class="bodies">
+        <img
+          id="anthro2"
+          class="bodies object"
+          data-value="2"
+          src="./img/anthropo/ANTHROPOMETRIE_02.png"
+        />
+        <img
+          id="anthro3"
+          class="bodies object"
+          data-value="1"
+          src="./img/anthropo/ANTHROPOMETRIE_03.png"
+        />
+        <img
+          id="anthro4"
+          class="bodies object"
+          data-value="4"
+          src="./img/anthropo/ANTHROPOMETRIE_04.png"
+        />
+        <img
+          id="anthro5"
+          class="bodies object"
+          data-value="-2"
+          src="./img/anthropo/ANTHROPOMETRIE_05.png"
+        />
+        <img
+          id="anthro6"
+          class="bodies object"
+          data-value="2"
+          src="./img/anthropo/ANTHROPOMETRIE_06.png"
+        />
+        <img
+          id="anthro7"
+          class="bodies object"
+          data-value="3"
+          src="./img/anthropo/ANTHROPOMETRIE_07.png"
+        />
+        <img
+          id="anthro8"
+          class="bodies object"
+          data-value="-4"
+          src="./img/anthropo/ANTHROPOMETRIE_08.png"
+        />
+        <img
+          id="anthro9"
+          class="bodies object"
+          data-value="3"
+          src="./img/anthropo/ANTHROPOMETRIE_09.png"
+        />
+      </div>
+
+      <div class="background">
+        <img src="./img/anthropo/FOND_01.png" />
+      </div>
+
+      <div class="taches">
+        <img
+          class="taches1 tache"
+          data-value="1"
+          src="./img/anthropo/TACHES_01.png"
+        />
+        <img
+          class="taches2 tache"
+          data-value="-1"
+          src="./img/anthropo/TACHES_02.png"
+        />
+        <img
+          class="taches3 tache"
+          data-value="-1"
+          src="./img/anthropo/TACHES_03.png"
+        />
       </div>
     </div>
+
     <canvas id="_canvas"></canvas>
   </body>
 </html>

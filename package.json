@@ -5,8 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "gsap": "^3.5.1",
+    "jquery": "^3.5.1",
     "lottie-web": "^5.7.5",
-    "ray-tracing-renderer": "^0.10.15"
+    "ray-tracing-renderer": "^0.10.15",
+    "vanilla-fade": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

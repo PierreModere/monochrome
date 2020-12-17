@@ -1,8 +1,6 @@
 import { AxesHelper, Object3D } from 'three'
 
 import Samothrace from './Samothrace.js'
-import Workshop from './Workshop.js'
-import Room from './Room.js'
 import Atelier from './Atelier.js'
 import Lever from './Lever.js'
 import AllLightSource from './AllLight.js'
@@ -10,6 +8,9 @@ import PaintAnimationSource from './PaintAnimation.js'
 import Sounds from './Sounds'
 import { movCircle, hoverFunc, unhoverFunc } from '../mouseCursor.js'
 import lottie from 'lottie-web'
+
+import { setAnthro } from './anthro.js'
+import { setPeintureDeFeu,setParallax } from './firePaint.js'
 
 export default class World {
   constructor(options) {
@@ -40,6 +41,10 @@ export default class World {
     this.setLoader()
   }
   init(sceneNumber) {
+    let scene1 = document.querySelector('#_canvas')
+    let scene2 = document.querySelector('#anth')
+    let scene3 = document.querySelector('#lanceflamme')
+
     setTimeout(() => {
       document.querySelector('.menu').style.opacity = '0'
       setTimeout(() => {
@@ -58,16 +63,14 @@ export default class World {
         this.setSpotLight()
         break
       case 'scene2':
-        // this.setSamothrace()
-        this.setRoom()
-        this.setLever()
-        this.setAllLight()
-        this.setPaintAnimation()
-        this.setSounds()
+        scene2.style.display = 'block'
+        scene2.style.opacity = '1'
+        setAnthro()
         break
       case 'scene3':
-        this.setWorkshop()
-        this.setSounds()
+        scene3.style.display = 'block'
+        scene3.style.opacity = '1'
+        setPeintureDeFeu()
         break
     }
   }
@@ -77,50 +80,48 @@ export default class World {
     this.loadModels = this.loadDiv.querySelector('.load')
     this.progress = this.loadDiv.querySelector('.progress')
     this.loaderAnimationContainer = this.loadDiv.querySelector('#bm')
+    this.home = document.querySelector('.home')
+    this.homeButton = this.home.querySelector('button')
+    this.menu = document.querySelector('.menu')
 
-    if (this.assets.total === 0) {
-      this.init()
-      this.loadDiv.remove()
-    } else {
-      this.assets.on('ressourceLoad', () => {
-        // this.progress.style.width = this.loadModels.innerHTML = `${
-        //   Math.floor((this.assets.done / this.assets.total) * 100) +
-        //   Math.floor((1 / this.assets.total) * this.assets.currentPercent)
-        // }%`
-      })
+    // if (this.assets.total === 0) {
+    //   this.init()
+    //   this.loadDiv.remove()
+    // } else {
+    //   this.assets.on('ressourceLoad', () => {
+    //     // this.progress.style.width = this.loadModels.innerHTML = `${
+    //     //   Math.floor((this.assets.done / this.assets.total) * 100) +
+    //     //   Math.floor((1 / this.assets.total) * this.assets.currentPercent)
+    //     // }%`
+    //   })
 
-      this.assets.on('ressourcesReady', () => {
-        document
-          .querySelector('.loadScreen')
-          .addEventListener('mousemove', movCircle)
-        this.button = document.createElement('button')
-        this.button.innerHTML = "Commencer l'expérience"
-        this.button.classList.add('start-button')
-        this.loadModels.style.display = 'none'
-        this.loaderAnimationContainer.style.display = 'none'
-        this.progress.style.display = 'none'
-        this.loadDiv.append(this.button)
-        this.button.addEventListener('mouseover', hoverFunc)
-        this.button.addEventListener('mouseout', unhoverFunc)
-        this.button.addEventListener('click', () => {
-          let menu = document.querySelector('.menu')
-          setTimeout(() => {
-            this.loadDiv.style.opacity = 0
-            setTimeout(() => {
-              this.loadDiv.remove()
-            }, 550)
-          }, 400)
-          menu.style.visibility = 'visible'
-          menu.buttons = menu.querySelectorAll('.scene-button')
-          for (let button of menu.buttons) {
-            button.addEventListener('click', (e) => {
-              this.init(button.getAttribute('id'))
-            })
-          }
-        })
+    this.assets.on('ressourcesReady', () => {
+      this.loadDiv.style.opacity = 0
+      setTimeout(() => {
+        this.loadDiv.remove()
+      }, 550)
+      this.home.style.display = 'flex'
+      this.home.addEventListener('mousemove', movCircle)
+      this.homeButton.addEventListener('mouseover', hoverFunc)
+      this.homeButton.addEventListener('mouseout', unhoverFunc)
+      this.homeButton.addEventListener('click', (e) => {
+        this.home.style.opacity = 0
+        setTimeout(() => {
+          this.home.remove()
+        }, 2000)
+        this.menu.style.visibility = 'visible'
+        this.menu.buttons = this.menu
+          .querySelector('#svg-menu')
+          .querySelectorAll('.scene-button')
+        for (let button of this.menu.buttons) {
+          button.addEventListener('click', (e) => {
+            this.init(button.getAttribute('id'))
+          })
+        }
       })
-    }
+    })
   }
+
   setSounds() {
     this.sounds = new Sounds({
       assets: this.assets,
