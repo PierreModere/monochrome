@@ -6,11 +6,16 @@ import Lever from './Lever.js'
 import AllLightSource from './AllLight.js'
 import PaintAnimationSource from './PaintAnimation.js'
 import Sounds from './Sounds'
-import { movCircle, hoverFunc, unhoverFunc } from '../mouseCursor.js'
+import {
+  movCircle,
+  removeCircle,
+  hoverFunc,
+  unhoverFunc,
+} from '../mouseCursor.js'
 import lottie from 'lottie-web'
 
 import { setAnthro } from './anthro.js'
-import { setPeintureDeFeu,setParallax } from './firePaint.js'
+import { setPeintureDeFeu, setParallax } from './firePaint.js'
 
 export default class World {
   constructor(options) {
@@ -53,24 +58,25 @@ export default class World {
     }, 730)
     switch (sceneNumber) {
       case 'scene1':
-        // this.setSamothrace()
+        removeCircle()
+        window.isScene1 = true
         this.setAtelier()
-        // this.setRoom()
-        this.setLever()
+        // this.setLever()
         this.setAllLight()
         this.setPaintAnimation()
         this.setSounds()
-        this.setSpotLight()
         break
       case 'scene2':
         scene2.style.display = 'block'
         scene2.style.opacity = '1'
         setAnthro()
+        removeCircle()
         break
       case 'scene3':
         scene3.style.display = 'block'
         scene3.style.opacity = '1'
         setPeintureDeFeu()
+        removeCircle()
         break
     }
   }
@@ -83,17 +89,6 @@ export default class World {
     this.home = document.querySelector('.home')
     this.homeButton = this.home.querySelector('button')
     this.menu = document.querySelector('.menu')
-
-    // if (this.assets.total === 0) {
-    //   this.init()
-    //   this.loadDiv.remove()
-    // } else {
-    //   this.assets.on('ressourceLoad', () => {
-    //     // this.progress.style.width = this.loadModels.innerHTML = `${
-    //     //   Math.floor((this.assets.done / this.assets.total) * 100) +
-    //     //   Math.floor((1 / this.assets.total) * this.assets.currentPercent)
-    //     // }%`
-    //   })
 
     this.assets.on('ressourcesReady', () => {
       this.loadDiv.style.opacity = 0
@@ -126,7 +121,7 @@ export default class World {
     this.sounds = new Sounds({
       assets: this.assets,
       camera: this.camera,
-      src: this.assets.sounds.test,
+      src: this.assets.sounds.Samothrace,
     })
   }
   setAllLight() {
@@ -143,20 +138,6 @@ export default class World {
     })
     this.container.add(this.Samothrace.container)
   }
-  setRoom() {
-    this.Room = new Room({
-      time: this.time,
-      assets: this.assets,
-    })
-    this.container.add(this.Room.container)
-  }
-  setLever() {
-    this.Lever = new Lever({
-      time: this.time,
-      assets: this.assets,
-    })
-    this.container.add(this.Lever.container)
-  }
   setAtelier() {
     this.Atelier = new Atelier({
       time: this.time,
@@ -171,11 +152,6 @@ export default class World {
     })
     this.container.add(this.Video.container)
   }
+  
 
-  setSpotLight() {
-    this.light = new SpotLightSource({
-      debug: this.debugFolder,
-    })
-    this.container.add(this.light.container)
-  }
 }

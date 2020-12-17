@@ -1,11 +1,13 @@
 import { gsap, Power1 } from 'gsap'
 
-// http://ahrengot.com/tutorials/greensock-javascript-animation
-
 var circle = document.querySelector('.circle')
 var follow = document.querySelector('.circle-follow')
 
 export function movCircle(e) {
+  circle.style.opacity = 1
+  follow.style.opacity = 1
+  circle.style.display = 'block'
+  follow.style.display = 'block'
   gsap.to(
     circle,
     0.1,
@@ -19,6 +21,16 @@ export function movCircle(e) {
     x: e.clientX,
     y: e.clientY,
   })
+}
+
+export function removeCircle() {
+  console.log("effectivement")
+  circle.style.opacity = 0
+  follow.style.opacity = 0
+  setTimeout(() => {
+    circle.style.display = 'none'
+    follow.style.display = 'none'
+  }, 600)
 }
 
 export function hoverFunc(e) {

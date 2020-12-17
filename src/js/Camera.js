@@ -48,18 +48,13 @@ export default class Camera {
   }
 
   setPosition() {
-    this.camera.position.x = 80
-    this.camera.position.y = 120
-    this.camera.position.z = -180
-    this.camera.rotation.y = -Math.PI/2
-    // setTimeout(() => {
-    //   gsap.to(this.camera.position, {
-    //     duration: 2,
-    //     x: 165,
-    //     y: 95,
-    //   })
-    // }, 10000)
-    // this.tl = gsap.timeline({ repeat: 15, onComplete: console.log('aaaa') })
+    this.camera.position.set(165, 95, -180)
+
+    this.camera.rotation.y = -Math.PI / 2
+
+    // window.addEventListener('click', () => {})
+
+    // this.tl = gsap.timeline({ repeat: 0, onComplete: console.log('aaaa') })
     // //add a tween
     // this.tl.to(this.camera.position, {
     //   duration: 1,
@@ -85,29 +80,17 @@ export default class Camera {
     //   ease: Linear.easeNone,
     // })
     // this.tl.to(this.camera.position, {
-    //   duration: 1,
+    //   duration: 8,
     //   x: 165,
     //   y: 95,
     //   z: -180,
     //   ease: Linear.easeNone,
     // })
-    // this.tl = gsap.timeline({ repeat: 15, onComplete: console.log('aaaa') })
-    // //add a tween
-    // this.tl.to(this.camera.rotation, {
-    //   duration: 8,
-    //   y: Math.PI,
-    //   ease: Linear.easeNone,
-    // })
-
-    // this.tl.to(this.camera.rotation, {
-    //   duration: 8,
-    //   y: -Math.PI/2,
-    //   ease: Linear.easeNone,
-    // })
-
-
     // this.tl.play()
+
   }
+
+  
 
   setOrbitControls() {
     // Set orbit control
@@ -116,7 +99,7 @@ export default class Camera {
       this.renderer.domElement
     )
 
-    this.orbitControls.enabled = false
+    this.orbitControls.enabled = true
     // this.orbitControls.enableKeys = false
     // this.orbitControls.zoomSpeed = 1
     // this.orbitControls.enableZoom = false;

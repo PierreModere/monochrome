@@ -14,22 +14,19 @@ export function setParallax() {
   }
 }
 export function setPeintureDeFeu() {
-  console.clear()
+  setParallax()
   const svg = document.querySelector('#demo')
   const tl = new TimelineMax({ onUpdate: onUpdate })
   let pt = svg.createSVGPoint()
   let data = document.querySelector('.tlProgress')
-  let counter = document.querySelector('#counter')
   const ratio = 0.5625
-
-  gsap.set('#instructions, #dial', { xPercent: -50 })
-  gsap.set('#progressRing', { drawSVG: 0 })
 
   tl.to('#masker', { duration: 2, attr: { r: 2400 }, ease: 'power2.in' })
   tl.reversed(true)
 
   function mouseHandler() {
-    tl.reversed(!tl.reversed())
+    if (document.querySelector('#masker').getAttribute('r') < 2300)
+      tl.reversed(!tl.reversed())
   }
 
   function getPoint(evt) {
@@ -38,9 +35,8 @@ export function setPeintureDeFeu() {
     return pt.matrixTransform(svg.getScreenCTM().inverse())
   }
 
-  function mouseMove(evt) {
+  function mouseMovement(evt) {
     let newPoint = getPoint(evt)
-    gsap.set('#dot', { attr: { cx: newPoint.x, cy: newPoint.y } })
     gsap.to('#ring, #masker', 0.88, {
       attr: { cx: newPoint.x, cy: newPoint.y },
       ease: 'power2.out',
@@ -49,8 +45,6 @@ export function setPeintureDeFeu() {
 
   function onUpdate() {
     let prog = tl.progress() * 100
-    gsap.set('#progressRing', { drawSVG: prog + '%' })
-    counter.textContent = prog.toFixed()
   }
 
   function newSize() {
@@ -68,7 +62,7 @@ export function setPeintureDeFeu() {
 
   window.addEventListener('mousedown', mouseHandler)
   window.addEventListener('mouseup', mouseHandler)
-  window.addEventListener('mousemove', mouseMove)
+  window.addEventListener('mousemove', mouseMovement)
 
   newSize()
   window.addEventListener('resize', newSize)

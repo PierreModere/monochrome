@@ -3,6 +3,18 @@
   src: url('@fonts/Basis-Grotesque-Pro-Black.ttf');
 }
 
+@keyframes slideUp {
+  from {
+    transform: translateY(45px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
 .menu {
   position: absolute;
   top: 0;
@@ -15,6 +27,8 @@
   align-items: center;
   transition: 1s opacity ease;
   visibility: hidden;
+          animation: slideUp 0.8s ease both;
+
 
   #svg-menu {
     position: absolute;

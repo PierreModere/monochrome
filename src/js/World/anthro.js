@@ -1,6 +1,6 @@
 import { setParallax } from './firePaint.js'
 import { movCircle, hoverFunc, unhoverFunc } from '../mouseCursor.js'
-var anthros = document.querySelector('#anth').querySelectorAll('.object')
+var anthros = document.querySelector('#anth').querySelectorAll('.anthro')
 var taches = document.querySelector('#anth').querySelectorAll('.tache')
 var bg = document.querySelector('#anth').querySelector('.background')
 var button = document.querySelector('#anth').querySelector('.btn')
@@ -25,7 +25,7 @@ export function setAnthro() {
 
   for (let i = 0; i < anthros.length; i++) {
     anthros[i].addEventListener('click', function () {
-      masterGain.gain.value *= 1.2
+      masterGain.gain.value *= 1.5
 
       if (i + 1 < anthros.length) fadeIn(anthros[i + 1])
       switch (i) {

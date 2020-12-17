@@ -17,7 +17,7 @@ export default class Sounds {
     this.backgroundSound.setBuffer(this.src)
 
     this.backgroundSound.setLoop(true)
-    // this.backgroundSound.setLoopEnd(this.assets.sounds.test.duration - 22)
+    this.backgroundSound.setLoopEnd(this.src.duration)
 
     this.backgroundSound.setVolume(0.2)
     this.backgroundSound.play()
@@ -35,10 +35,10 @@ export default class Sounds {
     )
     this.backgroundSound.gain.gain.linearRampToValueAtTime(
       0.02,
-      this.assets.sounds.background.duration - 22
+      this.src.duration
     )
-    setTimeout(() => {
-      this.setLoop()
-    }, (this.assets.sounds.background.duration - 22) * 1000)
+    // setTimeout(() => {
+    //   this.setLoop()
+    // }, (this.this.src.duration) * 1000)
   }
 }

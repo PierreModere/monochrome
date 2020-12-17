@@ -15,7 +15,7 @@ import Assets from '@tools/Loader.js'
 import Camera from './Camera.js'
 import World from '@world/index.js'
 
-import * as dat from 'dat.gui'
+// import * as dat from 'dat.gui'
 import './mouseCursor.js'
 
 var allowMove = true
@@ -38,12 +38,15 @@ export default class App {
     this.time = new Time()
     this.sizes = new Sizes()
     this.assets = new Assets()
+    this.samothrace = null
+    this.video = null
+    this.materialVideo = null
 
     this.setConfig()
     this.setRenderer()
     this.setCamera()
     this.setWorld()
-    // this.setMouseRotation()
+    this.setMouseRotation()
   }
   setRenderer() {
     // Set scene
@@ -77,37 +80,38 @@ export default class App {
 
     // Set RequestAnimationFrame with 60ips
     this.time.on('tick', () => {
-      this.renderer.render(this.scene, this.camera.camera)
-      if (this.scene.children[1].children[0] != undefined) {
-        if (this.statue == null || this.statue == undefined) {
-          this.statue = this.scene.children[1].children[0].children[0].children[0].children[2]
-        }
-        // this.camera.camera.lookAt(this.statue.position)
+      if (window.isScene1) {
+        this.renderer.render(this.scene, this.camera.camera)
+        // this.camera.camera.lookAt(this.scene.children[1].children[1].position)
 
-        // update the picking ray with the camera and mouse position
-        raycaster.setFromCamera(mouseRaycaster, this.camera.camera)
-        // calculate objects intersecting the picking ray var intersects =
-        const intersects = raycaster.intersectObjects(
-          this.scene.children[1].children[2].children[0].children
-        )
+        // if (this.video == null || this.video == undefined) {
+        //   this.samothrace = this.scene.children[1].children[0].children[0].children[0]
+        //   this.video = this.scene.children[1].children[2].children[0]
+        //   this.materialVideo = this.video.material.map.image
+        // }
+        // // update the picking ray with the camera and mouse position
+        // raycaster.setFromCamera(mouseRaycaster, this.camera.camera)
+        // // calculate objects intersecting the picking ray var intersects =
+        // const intersects = raycaster.intersectObjects(this.samothrace.children)
 
-        if (intersects.length > 0) {
-          let video = this.scene.children[1].children[4].children[0].material
-            .map.image
-          let camera = this.camera.camera
-          let world = this.scene.children[1]
-          let samothraceColor = this.scene.children[1].children[0].children[0]
-            .children[0].material.color
-
-          window.addEventListener('click', (e) => {
-            this.leverAnimation(samothraceColor, world, intersects, video)
-          })
-        }
+        // if (intersects.length >= 2) {
+        //   let video = this.video
+        //   let camera = this.camera.camera
+        //   let world = this.scene.children[1]
+        //   let samothrace = this.samothrace
+        //   window.addEventListener(
+        //     'click',
+        //     this.paint(samothrace, world, intersects, video)
+        //   )
+        // }
+        // else {
+        //   window.removeEventListener('click', this.test(scene))
+        // }
       }
     })
   }
 
-  leverAnimation(target, world, group, video) {
+  paint(target, world, group, video) {
     if (group[0].object.name == 'Levier001') {
       target.set(0xf0f0f0)
       gsap.to(group[0].object.rotation, {
@@ -121,23 +125,23 @@ export default class App {
   }
 
   setMouseRotation() {
-    window.addEventListener('mousemove', (e) => {
-      if (allowMove) {
-        //Rotation verticale
-        this.world.container.rotation.y += Math.max(
-          Math.min((e.clientX - mouse.x) * 0.00007, cameraMoves.speed),
-          -cameraMoves.speed
-        )
-        //Rotation horizontale
+    // window.addEventListener('mousemove', (e) => {
+    //   if (allowMove) {
+    //     //Rotation verticale
+    //     this.world.container.rotation.y += Math.max(
+    //       Math.min((e.clientX - mouse.x) * 0.00007, cameraMoves.speed),
+    //       -cameraMoves.speed
+    //     )
+    //     //Rotation horizontale
 
-        this.world.container.rotation.x += Math.max(
-          Math.min((mouse.y - e.clientY) * 0.00008, cameraMoves.speed),
-          -cameraMoves.speed
-        )
-        mouse.x = e.clientX
-        mouse.y = e.clientY
-      }
-    })
+    //     this.world.container.rotation.x += Math.max(
+    //       Math.min((mouse.y - e.clientY) * 0.00008, cameraMoves.speed),
+    //       -cameraMoves.speed
+    //     )
+    //     mouse.x = e.clientX
+    //     mouse.y = e.clientY
+    //   }
+    // })
 
     window.addEventListener('mousemove', function (e) {
       mouseRaycaster.x = (e.clientX / window.innerWidth) * 2 - 1
