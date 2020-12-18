@@ -25,5 +25,28 @@ export function launchVideo(sceneNumber) {
   videoContainer.src = videoSrc
   divVideo.style.display = 'flex'
   divVideo.style.opacity = '1'
+  document.querySelector('.backMenu').style.display = 'block'
+  document.querySelector('.backMenu').style.opacity = 1
+  document.querySelector('.backMenu').addEventListener('mousemove', movCircle)
+  document.querySelector('.backMenu').addEventListener('mouseover', hoverFunc)
+  document.querySelector('.backMenu').addEventListener('mouseout', unhoverFunc)
+  document.querySelector('.backMenu').addEventListener('click', () => {
+    location.reload()
+  })
   divVideo.addEventListener('mousemove', movCircle)
+}
+
+export function fadeIn(element, mode) {
+  var op = 0 // initial opacity
+  if (element == button || mode == 'flex') {
+    element.style.display = 'flex'
+  } else {
+    element.style.display = 'block'
+  }
+  var timer = setInterval(function () {
+    if (op >= 1) {
+      clearInterval(timer)
+    }
+    element.style.opacity = 1
+  }, 10)
 }

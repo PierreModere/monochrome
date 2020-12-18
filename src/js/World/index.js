@@ -130,8 +130,20 @@ export default class World {
         break
     }
   }
+  getUrlVars() {
+    let vars = {}
+    let parts = window.location.href.replace(
+      /[?&]+([^=&]+)=([^&]*)/gi,
+      function (m, key, value) {
+        vars[key] = value
+      }
+    )
+    return vars
+  }
 
   setLoader() {
+
+    // if (this.getUrlVars==undefined)
     this.loadDiv = document.querySelector('.loadScreen')
     this.loadModels = this.loadDiv.querySelector('.load')
     this.progress = this.loadDiv.querySelector('.progress')
@@ -171,7 +183,6 @@ export default class World {
       })
     })
   }
-
 
   setSounds() {
     this.sounds = new Sounds({
