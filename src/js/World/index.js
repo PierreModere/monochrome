@@ -76,7 +76,7 @@ export default class World {
         shape = './explications/anthroShape.png'
         title = 'Anthropométries'
         explanationText =
-          'C’est en même temps quelque chose qui renoue avec des mœurs très très anciennes, bien avant la civilisation, dans les cavernes, il y avait des traces, il y avait des empreintes, il y a eu des empreintes de mains'
+          'C’est en même temps quelque chose qui renoue avec des mœurs très anciennes, bien avant la civilisation, dans les cavernes, il y avait des traces, il y avait des empreintes, il y a eu des empreintes de mains'
         break
       case 'scene3':
         bgUrl = './explications/feu.png'
