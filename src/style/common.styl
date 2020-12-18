@@ -59,3 +59,26 @@ html {
     transform: scale(3);
   }
 }
+
+.btnCanvas {
+  position: absolute;
+  display: none;
+  z-index: 3 !important;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: flex-end;
+  opacity: 0;
+  transition: 0.75s opacity ease;
+
+  a {
+    width: 240px;
+    height: 55px;
+    margin-bottom: 50px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

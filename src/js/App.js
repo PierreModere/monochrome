@@ -15,6 +15,8 @@ import Assets from '@tools/Loader.js'
 import Camera from './Camera.js'
 import World from '@world/index.js'
 import Infos from './Infos'
+import { launchVideo } from '@world/endVideo.js'
+import { fadeIn } from '@world/anthro.js'
 
 var allowMove = true
 var cameraMoves = {
@@ -119,6 +121,13 @@ export default class App {
         this.scene.children[1].children[0].children[0].children[0].children[1].material.color.set(
           0x0006c2
         )
+        let button = document.querySelector('.btnCanvas')
+        setTimeout(() => {
+          fadeIn(button,"flex")
+          button.addEventListener('click', function () {
+            launchVideo('scene1')
+          })
+        }, 2500)
       }, 1200)
       gsap.to(this.scene.children[1].children[1].children[0].material, {
         duration: 1,

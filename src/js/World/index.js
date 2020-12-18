@@ -6,6 +6,7 @@ import Lever from './Lever.js'
 import AllLightSource from './AllLight.js'
 import PaintAnimationSource from './PaintAnimation.js'
 import Sounds from './Sounds'
+
 import {
   movCircle,
   removeCircle,
@@ -171,26 +172,6 @@ export default class World {
     })
   }
 
-  // launchAnimation() {
-  //   this.video = this.container.children[2].children[0]
-  //   this.video.material.map.image.play()
-  //   this.statue = this.container.children[0].children[0].children[0].children[2]
-  //   let value = new Color(0x072bb8)
-
-  //   gsap.to(this.statue.material.color, {
-  //     duration: 1,
-  //     delay: 1.5,
-  //     r: value.r,
-  //     g: value.g,
-  //     b: value.b,
-  //   })
-  //   gsap.to(this.video.material, {
-  //     duration: 1,
-  //     delay: 3,
-  //     opacity: 0,
-  //   })
-  //   console.log(this.statue.material)
-  // }
 
   setSounds() {
     this.sounds = new Sounds({

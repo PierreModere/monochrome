@@ -29,7 +29,11 @@ export function setPeintureDeFeu() {
   function mouseHandler() {
     if (document.querySelector('#masker').getAttribute('r') < 2300) {
       tl.reversed(!tl.reversed())
-      fadeIn(document.querySelector('#lanceflamme').querySelector('.btn'))
+      setTimeout(() => {      fadeIn(document.querySelector('#lanceflamme').querySelector('.btn'))
+    },1500)
+      document
+        .querySelector('#lanceflamme')
+        .addEventListener('mousemove', movCircle)
       let button = document.querySelector('#lanceflamme').querySelector('.btn')
       document
       button.querySelector('a').addEventListener('mouseover', hoverFunc)

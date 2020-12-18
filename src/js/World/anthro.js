@@ -56,10 +56,10 @@ export function setAnthro() {
             button.querySelector('a').addEventListener('mouseout', unhoverFunc)
             button.querySelector('a').addEventListener('click', () => {
               launchVideo('scene2')
-              button.style.opacity=0
+              button.style.opacity = 0
               setTimeout(() => {
                 button.remove()
-              },2000)
+              }, 2000)
             })
           }, 1200)
           break
@@ -68,9 +68,9 @@ export function setAnthro() {
   }
 }
 
-function fadeIn(element) {
+export function fadeIn(element, mode) {
   var op = 0 // initial opacity
-  if (element == button) {
+  if (element == button || mode == 'flex') {
     element.style.display = 'flex'
   } else {
     element.style.display = 'block'

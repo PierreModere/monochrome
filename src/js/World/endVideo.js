@@ -25,4 +25,5 @@ export function launchVideo(sceneNumber) {
   videoContainer.src = videoSrc
   divVideo.style.display = 'flex'
   divVideo.style.opacity = '1'
+  divVideo.addEventListener('mousemove', movCircle)
 }
