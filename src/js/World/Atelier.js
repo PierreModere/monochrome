@@ -14,14 +14,14 @@ export default class Atelier {
     this.setMovement()
   }
   createAtelier() {
-    this.Atelier = this.assets.models.BakedAtelier.scene
+    this.Atelier = this.assets.models.BakedAtelier2.scene
     this.container.add(this.Atelier)
     this.Atelier.scale.x = 0.5
     this.Atelier.scale.y = 0.5
     this.Atelier.scale.z = 0.5
     this.Atelier.position.set(0,0,0)
     this.Atelier.children.forEach((child) => {
-      child.castShadow = true
+      child.receiveShadow = true
     })
   }
   setMovement() {

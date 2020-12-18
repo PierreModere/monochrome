@@ -24,7 +24,6 @@ export function movCircle(e) {
 }
 
 export function removeCircle() {
-  console.log("effectivement")
   circle.style.opacity = 0
   follow.style.opacity = 0
   setTimeout(() => {

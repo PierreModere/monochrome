@@ -28,6 +28,8 @@ export default class Camera {
     this.setPosition()
     // this.setOrbitControls()
     this.setMovement()
+    // this.setEvent()
+    document.querySelector("#_canvas").addEventListener('click', this.setAnimation)
   }
   setCamera() {
     // Create camera
@@ -48,49 +50,30 @@ export default class Camera {
   }
 
   setPosition() {
-    this.camera.position.set(165, 95, -180)
+    this.camera.position.set(165, 96.300, -180)
+    this.camera.rotation.y = -Math.PI/2
 
-    this.camera.rotation.y = -Math.PI / 2
-
-    // window.addEventListener('click', () => {})
-
-    // this.tl = gsap.timeline({ repeat: 0, onComplete: console.log('aaaa') })
-    // //add a tween
-    // this.tl.to(this.camera.position, {
-    //   duration: 1,
-    //   x: 0,
-    //   y: 150,
-    //   z: -500,
-    //   ease: Linear.easeNone,
-    // })
-
-    // this.tl.to(this.camera.position, {
-    //   duration: 1,
-    //   x: 10,
-    //   y: 95,
-    //   z: -280,
-    //   ease: Linear.easeNone,
-    // })
-
-    // this.tl.to(this.camera.position, {
-    //   duration: 1,
-    //   x: 80,
-    //   y: 120,
-    //   z: -180,
-    //   ease: Linear.easeNone,
-    // })
-    // this.tl.to(this.camera.position, {
-    //   duration: 8,
-    //   x: 165,
-    //   y: 95,
-    //   z: -180,
-    //   ease: Linear.easeNone,
-    // })
-    // this.tl.play()
-
+    // this.camera.position.set(0, 200, -500)
+    // this.camera.rotation.y = -Math.PI
+    // this.camera.rotation.y = -Math.PI
   }
 
-  
+  // setAnimation() {
+  //     gsap.to(this.camera.position, {
+  //       duration: 8,
+  //       delay: 2,
+  //       x: 165,
+  //       y: 95,
+  //       z: -180,
+  //     })
+  //     gsap.to(this.camera.rotation, {
+  //       duration: 8,
+  //       delay: 2,
+
+  //       y: -Math.PI / 2,
+  //     })
+  //   }
+  // }
 
   setOrbitControls() {
     // Set orbit control

@@ -16,10 +16,6 @@ html {
   background: #F5F5F5;
 }
 
-body {
-  height: 3000px;
-}
-
 .link {
   display: inline-block;
 }
@@ -37,9 +33,10 @@ body {
   pointer-events: none;
   z-index: 10000;
   transform: scale(1);
+
   &.active {
-  opacity: 1;
-  transform: scale(0);
+    opacity: 1;
+    transform: scale(0);
   }
 }
 
@@ -57,7 +54,8 @@ body {
   z-index: 10000;
   overflow: hidden;
   transform: scale(1);
+
   &.active {
-  transform: scale(3);
+    transform: scale(3);
   }
 }

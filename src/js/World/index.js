@@ -1,4 +1,4 @@
-import { AxesHelper, Object3D } from 'three'
+import { AxesHelper, Object3D, Color } from 'three'
 
 import Samothrace from './Samothrace.js'
 import Atelier from './Atelier.js'
@@ -16,6 +16,7 @@ import lottie from 'lottie-web'
 
 import { setAnthro } from './anthro.js'
 import { setPeintureDeFeu, setParallax } from './firePaint.js'
+import { gsap } from 'gsap'
 
 export default class World {
   constructor(options) {
@@ -62,9 +63,13 @@ export default class World {
         window.isScene1 = true
         this.setAtelier()
         // this.setLever()
-        this.setAllLight()
+        // this.setAllLight()
         this.setPaintAnimation()
         this.setSounds()
+        // setTimeout(() => {
+        //   this.launchAnimation()
+        // }, 5000)
+
         break
       case 'scene2':
         scene2.style.display = 'block'
@@ -104,7 +109,7 @@ export default class World {
         setTimeout(() => {
           this.home.remove()
         }, 2000)
-        this.menu.style.visibility = 'visible'
+        this.menu.style.display = 'flex'
         this.menu.buttons = this.menu
           .querySelector('#svg-menu')
           .querySelectorAll('.scene-button')
@@ -116,6 +121,27 @@ export default class World {
       })
     })
   }
+
+  // launchAnimation() {
+  //   this.video = this.container.children[2].children[0]
+  //   this.video.material.map.image.play()
+  //   this.statue = this.container.children[0].children[0].children[0].children[2]
+  //   let value = new Color(0x072bb8)
+
+  //   gsap.to(this.statue.material.color, {
+  //     duration: 1,
+  //     delay: 1.5,
+  //     r: value.r,
+  //     g: value.g,
+  //     b: value.b,
+  //   })
+  //   gsap.to(this.video.material, {
+  //     duration: 1,
+  //     delay: 3,
+  //     opacity: 0,
+  //   })
+  //   console.log(this.statue.material)
+  // }
 
   setSounds() {
     this.sounds = new Sounds({
@@ -152,6 +178,4 @@ export default class World {
     })
     this.container.add(this.Video.container)
   }
-  
-
 }

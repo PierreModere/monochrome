@@ -14,6 +14,7 @@ import Assets from '@tools/Loader.js'
 
 import Camera from './Camera.js'
 import World from '@world/index.js'
+import Infos from './Infos'
 
 // import * as dat from 'dat.gui'
 import './mouseCursor.js'
@@ -47,6 +48,7 @@ export default class App {
     this.setCamera()
     this.setWorld()
     this.setMouseRotation()
+    this.setInfos()
   }
   setRenderer() {
     // Set scene
@@ -133,7 +135,6 @@ export default class App {
     //       -cameraMoves.speed
     //     )
     //     //Rotation horizontale
-
     //     this.world.container.rotation.x += Math.max(
     //       Math.min((mouse.y - e.clientY) * 0.00008, cameraMoves.speed),
     //       -cameraMoves.speed
@@ -142,10 +143,18 @@ export default class App {
     //     mouse.y = e.clientY
     //   }
     // })
+    // window.addEventListener('mousemove', function (e) {
+    //   mouseRaycaster.x = (e.clientX / window.innerWidth) * 2 - 1
+    //   mouseRaycaster.y = -(e.clientY / window.innerHeight) * 2 + 1
+    // })
+  }
 
-    window.addEventListener('mousemove', function (e) {
-      mouseRaycaster.x = (e.clientX / window.innerWidth) * 2 - 1
-      mouseRaycaster.y = -(e.clientY / window.innerHeight) * 2 + 1
+  setInfos() {
+    this.infos = new Infos({
+      samothrace: this.scene.children[1].children[0].children[0].children[0],
+      sizes: this.sizes,
+      camera: this.camera.camera,
+      video: this.scene.children[1].children[2].children[0],
     })
   }
 

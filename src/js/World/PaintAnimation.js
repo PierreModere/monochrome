@@ -12,6 +12,8 @@ import {
   DoubleSide,
 } from 'three'
 
+import { gsap } from 'gsap'
+
 export default class PaintAnimationSource {
   constructor(options) {
     // Set options
@@ -42,13 +44,10 @@ export default class PaintAnimationSource {
     })
     this.material = new MeshBasicMaterial({ color: 0xffff00, side: DoubleSide })
     this.videoObject = new Mesh(this.plane, this.videoMaterial)
-    this.videoObject.position.set(250, 95, -180)
+    this.videoObject.position.set(230.0, 98.0, -183.0)
+    this.videoObject.scale.set(0.5, 0.5, 0.5)
     this.videoObject.rotation.y = -Math.PI / 2
     this.container.add(this.videoObject)
-
-    setTimeout(() => {
-      this.videoObject.material.map.image.play()
-    },4000)
   }
   setDebug() {
     this.debugFolder = this.debug.addFolder('Paint Light')
