@@ -16,9 +16,6 @@ import Camera from './Camera.js'
 import World from '@world/index.js'
 import Infos from './Infos'
 
-// import * as dat from 'dat.gui'
-import './mouseCursor.js'
-
 var allowMove = true
 var mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
 var cameraMoves = {
@@ -48,7 +45,6 @@ export default class App {
     this.setCamera()
     this.setWorld()
     this.setMouseRotation()
-    this.setInfos()
   }
   setRenderer() {
     // Set scene
@@ -84,31 +80,7 @@ export default class App {
     this.time.on('tick', () => {
       if (window.isScene1) {
         this.renderer.render(this.scene, this.camera.camera)
-        // this.camera.camera.lookAt(this.scene.children[1].children[1].position)
-
-        // if (this.video == null || this.video == undefined) {
-        //   this.samothrace = this.scene.children[1].children[0].children[0].children[0]
-        //   this.video = this.scene.children[1].children[2].children[0]
-        //   this.materialVideo = this.video.material.map.image
-        // }
-        // // update the picking ray with the camera and mouse position
-        // raycaster.setFromCamera(mouseRaycaster, this.camera.camera)
-        // // calculate objects intersecting the picking ray var intersects =
-        // const intersects = raycaster.intersectObjects(this.samothrace.children)
-
-        // if (intersects.length >= 2) {
-        //   let video = this.video
-        //   let camera = this.camera.camera
-        //   let world = this.scene.children[1]
-        //   let samothrace = this.samothrace
-        //   window.addEventListener(
-        //     'click',
-        //     this.paint(samothrace, world, intersects, video)
-        //   )
-        // }
-        // else {
-        //   window.removeEventListener('click', this.test(scene))
-        // }
+        this.setInfos()
       }
     })
   }
@@ -143,19 +115,17 @@ export default class App {
     //     mouse.y = e.clientY
     //   }
     // })
-    // window.addEventListener('mousemove', function (e) {
-    //   mouseRaycaster.x = (e.clientX / window.innerWidth) * 2 - 1
-    //   mouseRaycaster.y = -(e.clientY / window.innerHeight) * 2 + 1
-    // })
   }
 
   setInfos() {
-    this.infos = new Infos({
-      samothrace: this.scene.children[1].children[0].children[0].children[0],
-      sizes: this.sizes,
-      camera: this.camera.camera,
-      video: this.scene.children[1].children[2].children[0],
-    })
+    if (!this.infos) {
+      this.infos = new Infos({
+        samothrace: this.scene.children[1].children[0].children[0].children[0],
+        sizes: this.sizes,
+        camera: this.camera.camera,
+        video: this.scene.children[1].children[2].children[0],
+      })
+    }
   }
 
   setCamera() {

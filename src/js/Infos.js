@@ -159,10 +159,14 @@ export default class Infos extends EventEmitter {
   //   })
   // }
   mouseClick() {
+    console.log(this.selected)
     document.addEventListener('click', () => {
-      if (this.selected == null) return
+      if (this.selected == null) {
+        return
+      }
+
       // this.camera.startVisit(this.selected.parent.parent)
-      console.log("aaaaaaaaa")
+      console.log('aaaaaaaaa')
       this.selected == null
       // this.houses.forEach((house) => {
       //   house.traverse((child) => {

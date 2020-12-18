@@ -62,14 +62,8 @@ export default class World {
         removeCircle()
         window.isScene1 = true
         this.setAtelier()
-        // this.setLever()
-        // this.setAllLight()
         this.setPaintAnimation()
         this.setSounds()
-        // setTimeout(() => {
-        //   this.launchAnimation()
-        // }, 5000)
-
         break
       case 'scene2':
         scene2.style.display = 'block'
@@ -108,12 +102,17 @@ export default class World {
         this.home.style.opacity = 0
         setTimeout(() => {
           this.home.remove()
-        }, 2000)
+        }, 1500)
         this.menu.style.display = 'flex'
         this.menu.buttons = this.menu
           .querySelector('#svg-menu')
           .querySelectorAll('.scene-button')
         for (let button of this.menu.buttons) {
+          button.addEventListener('mouseover', (e) => {
+            this.changeMenuAnim(button.getAttribute('id'))
+          })
+          button.addEventListener('mouseout', this.resetMenuAnim)
+          
           button.addEventListener('click', (e) => {
             this.init(button.getAttribute('id'))
           })
@@ -177,5 +176,29 @@ export default class World {
       assets: this.assets,
     })
     this.container.add(this.Video.container)
+  }
+
+  changeMenuAnim(sceneNumber) {
+    let imgDOM = document.querySelector('.img2')
+    imgDOM.style.display = 'block'
+
+    switch (sceneNumber) {
+      case 'scene1':
+        imgDOM.src = 'menuAnim/SamothraceAnim.gif'
+        break
+      case 'scene2':
+        imgDOM.src = 'menuAnim/AnthroAnim.gif'
+        break
+      case 'scene3':
+        imgDOM.src = 'menuAnim/FeuAnim.gif'
+        break
+
+      default:
+        break
+    }
+  }
+  resetMenuAnim() {
+    let imgDOM = document.querySelector('.img2')
+    imgDOM.style.display = 'none'
   }
 }
