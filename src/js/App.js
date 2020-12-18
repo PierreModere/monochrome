@@ -44,6 +44,7 @@ export default class App {
     this.mouseRaycaster = {}
     this.raycaster = new Raycaster()
     this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
+    this.allowMove = true
 
     // this.rotSpeed = 0.02
 
@@ -53,7 +54,7 @@ export default class App {
     this.setRenderer()
     this.setCamera()
     this.setWorld()
-    // this.setMouseRotation()
+    this.setMouseRotation()
     this.mouseClick()
     this.moseMovRaycastr()
   }
@@ -115,7 +116,14 @@ export default class App {
       if (this.selected == null) {
         return
       }
+      this.allowMove=false
       this.scene.children[1].children[1].children[0].material.map.image.play()
+      gsap.to('#bm2', {
+        duration: 0.5,
+        delay: 0.5,
+        opacity: 0,
+        ease: Power3.easeOut,
+      })
 
       setTimeout(() => {
         this.scene.children[1].children[0].children[0].children[0].children[1].material.color.set(
@@ -123,7 +131,7 @@ export default class App {
         )
         let button = document.querySelector('.btnCanvas')
         setTimeout(() => {
-          fadeIn(button,"flex")
+          fadeIn(button, 'flex')
           button.addEventListener('click', function () {
             launchVideo('scene1')
           })
@@ -148,22 +156,22 @@ export default class App {
     })
   }
   setMouseRotation() {
-    // window.addEventListener('mousemove', (e) => {
-    //   if (allowMove) {
-    //     //Rotation verticale
-    //     this.world.container.rotation.y += Math.max(
-    //       Math.min((e.clientX - mouse.x) * 0.00007, cameraMoves.speed),
-    //       -cameraMoves.speed
-    //     )
-    //     //Rotation horizontale
-    //     this.world.container.rotation.x += Math.max(
-    //       Math.min((mouse.y - e.clientY) * 0.00008, cameraMoves.speed),
-    //       -cameraMoves.speed
-    //     )
-    //     mouse.x = e.clientX
-    //     mouse.y = e.clientY
-    //   }
-    // })
+    window.addEventListener('mousemove', (e) => {
+      if (this.allowMove) {
+        // Rotation verticale
+        this.world.container.rotation.y += Math.max(
+          Math.min((e.clientX - this.mouse.x) * 0.00002, cameraMoves.speed),
+          -cameraMoves.speed
+        )
+        //Rotation horizontale
+        // this.world.container.rotation.x += Math.max(
+        //   Math.min((this.mouse.y - e.clientY) * 0.00001, cameraMoves.speed),
+        //   -cameraMoves.speed
+        // )
+        this.mouse.x = e.clientX
+        this.mouse.y = e.clientY
+      }
+    })
   }
 
   // setInfos() {

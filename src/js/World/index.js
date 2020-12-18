@@ -45,6 +45,14 @@ export default class World {
       path: 'loader.json',
     })
 
+    this.loaderAnimationDrag = lottie.loadAnimation({
+      container: document.getElementById('bm2'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'drag2.json',
+    })
+
     this.setLoader()
   }
   showExplanations(sceneNumber) {
@@ -142,7 +150,6 @@ export default class World {
   }
 
   setLoader() {
-
     // if (this.getUrlVars==undefined)
     this.loadDiv = document.querySelector('.loadScreen')
     this.loadModels = this.loadDiv.querySelector('.load')
@@ -205,6 +212,13 @@ export default class World {
       duration: 5,
       delay: 0.5,
       y: -Math.PI / 2,
+      ease: Power3.easeOut,
+    })
+
+    gsap.to('#bm2', {
+      duration: 1,
+      delay: 6,
+      opacity: 1,
       ease: Power3.easeOut,
     })
   }
