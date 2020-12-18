@@ -16,7 +16,7 @@ import lottie from 'lottie-web'
 
 import { setAnthro } from './anthro.js'
 import { setPeintureDeFeu, setParallax } from './firePaint.js'
-import { gsap } from 'gsap'
+import { gsap, Power3 } from 'gsap'
 
 export default class World {
   constructor(options) {
@@ -106,6 +106,8 @@ export default class World {
         this.setAtelier()
         this.setPaintAnimation()
         this.setSounds()
+        this.setAllLight()
+        this.setCameraAnimation()
         break
       case 'scene2':
         scene2.style.display = 'block'
@@ -189,6 +191,23 @@ export default class World {
       assets: this.assets,
       camera: this.camera,
       src: this.assets.sounds.Samothrace,
+    })
+  }
+
+  setCameraAnimation() {
+    gsap.to(this.camera.position, {
+      duration: 6,
+      delay: 1,
+      ease: Power3.easeOut,
+      x: 165,
+      y: 95,
+      z: -180,
+    })
+    gsap.to(this.camera.rotation, {
+      duration: 5,
+      delay: 1,
+      y: -Math.PI / 2,
+      ease: Power3.easeOut,
     })
   }
   setAllLight() {

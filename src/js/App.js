@@ -17,7 +17,6 @@ import World from '@world/index.js'
 import Infos from './Infos'
 
 var allowMove = true
-var mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
 var cameraMoves = {
   x: 0,
   y: 0,
@@ -42,6 +41,9 @@ export default class App {
 
     this.mouseRaycaster = {}
     this.raycaster = new Raycaster()
+    this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
+
+    // this.rotSpeed = 0.02
 
     this.selected = null
 
@@ -87,7 +89,7 @@ export default class App {
     this.time.on('tick', () => {
       if (window.isScene1) {
         this.renderer.render(this.scene, this.camera.camera)
-
+        // this.cameraRotation()
         this.raycaster.setFromCamera(this.mouseRaycaster, this.camera.camera)
         // calculate objects intersecting the picking ray var intersects =
         this.intersects = this.raycaster.intersectObjects(
@@ -105,6 +107,19 @@ export default class App {
       }
     })
   }
+
+  // cameraRotation() {
+  //   window.addEventListener('mousemove', (event) => {
+  //     this.mouse.x = event.clientX
+  //     this.mouse.y = event.clientY
+  //     this.camera.camera.rotation.x += Math.max(
+  //       Math.min((e.clientX - this.mouse.x) * 0.00007, this,),
+  //       -cameraMoves.speed
+  //     )
+  //   })
+  // }
+
+
 
   mouseClick() {
     document.addEventListener('click', () => {

@@ -50,11 +50,11 @@ export default class Camera {
   }
 
   setPosition() {
-    this.camera.position.set(165, 96.300, -180)
-    this.camera.rotation.y = -Math.PI/2
+    // this.camera.position.set(165, 96.300, -180)
+    // this.camera.rotation.y = -Math.PI/2
 
-    // this.camera.position.set(0, 200, -500)
-    // this.camera.rotation.y = -Math.PI
+    this.camera.position.set(0, 200, -500)
+    this.camera.rotation.y = -Math.PI
     // this.camera.rotation.y = -Math.PI
   }
 

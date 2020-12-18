@@ -32,8 +32,8 @@ export default class AllLightSource {
     // this.intensity = 1;
     // this.ambientLight = new HemisphereLight(sthis.kyColor, this.groundColor, this.intensity);
     // this.container.add(this.ambientLight);
-    this.light = new SpotLight(0xffffff, 5)
-    this.light.position.set(205, 210, -240)
+    this.light = new DirectionalLight(0xffffff, 2)
+    this.light.position.set(0.000, 150, 0)
     this.light.angle = 1.55
     this.light.power = 25
     this.light.decay = 0
@@ -42,7 +42,7 @@ export default class AllLightSource {
     this.light.castShadow = true
     this.container.add(this.light)
 
-    this.helper = new SpotLightHelper(this.light, 5)
+    this.helper = new DirectionalLightHelper(this.light, 5)
     this.container.add(this.helper)
     this.container.children.forEach((light) => {
       light.castShadow = true
