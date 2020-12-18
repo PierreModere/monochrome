@@ -1,7 +1,7 @@
 import { setParallax } from './firePaint.js'
 import { movCircle, hoverFunc, unhoverFunc } from '../mouseCursor.js'
 import { launchVideo } from './endVideo'
-import { gsap } from 'gsap'
+import { gsap, Power3 } from 'gsap'
 var anthros = document.querySelector('#anth').querySelectorAll('.anthro')
 var taches = document.querySelector('#anth').querySelectorAll('.tache')
 var bg = document.querySelector('#anth').querySelector('.background')
@@ -31,6 +31,13 @@ export function setAnthro() {
 
       if (i + 1 < anthros.length) fadeIn(anthros[i + 1])
       switch (i) {
+        case 0:
+          gsap.to('#bm3', {
+            duration: 0.6,
+            opacity: 0,
+            ease: Power3.easeOut,
+          })
+          break
         case 2:
           fadeIn(taches[0])
           break

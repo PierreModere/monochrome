@@ -46,6 +46,14 @@ export default class World {
     })
 
     this.loaderAnimationDrag = lottie.loadAnimation({
+      container: document.getElementById('bm3'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'drag.json',
+    })
+
+    this.loaderAnimationDrag2 = lottie.loadAnimation({
       container: document.getElementById('bm2'),
       renderer: 'svg',
       loop: true,
@@ -128,6 +136,12 @@ export default class World {
         scene2.style.display = 'block'
         scene2.style.opacity = '1'
         setAnthro()
+        gsap.to('#bm3', {
+          duration: 0.5,
+          delay: 1,
+          opacity: 1,
+          ease: Power3.easeOut,
+        })
         removeCircle()
         break
       case 'scene3':
