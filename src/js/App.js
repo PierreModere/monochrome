@@ -54,7 +54,7 @@ export default class App {
     this.setRenderer()
     this.setCamera()
     this.setWorld()
-    this.setMouseRotation()
+    // this.setMouseRotation()
     this.mouseClick()
     this.moseMovRaycastr()
   }
@@ -92,6 +92,7 @@ export default class App {
     this.time.on('tick', () => {
       if (window.isScene1) {
         this.renderer.render(this.scene, this.camera.camera)
+        
         // this.cameraRotation()
         this.raycaster.setFromCamera(this.mouseRaycaster, this.camera.camera)
         // calculate objects intersecting the picking ray var intersects =
@@ -116,7 +117,6 @@ export default class App {
       if (this.selected == null) {
         return
       }
-      this.allowMove=false
       this.scene.children[1].children[1].children[0].material.map.image.play()
       gsap.to('#bm2', {
         duration: 0.5,
