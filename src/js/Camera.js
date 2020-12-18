@@ -29,7 +29,9 @@ export default class Camera {
     // this.setOrbitControls()
     this.setMovement()
     // this.setEvent()
-    document.querySelector("#_canvas").addEventListener('click', this.setAnimation)
+    document
+      .querySelector('#_canvas')
+      .addEventListener('click', this.setAnimation)
   }
   setCamera() {
     // Create camera
@@ -52,28 +54,9 @@ export default class Camera {
   setPosition() {
     // this.camera.position.set(165, 96.300, -180)
     // this.camera.rotation.y = -Math.PI/2
-
-    this.camera.position.set(0, 200, -500)
-    this.camera.rotation.y = -Math.PI
-    // this.camera.rotation.y = -Math.PI
+    this.camera.position.set(0, 130, -450)
+    this.camera.rotation.y = -0.85 * Math.PI
   }
-
-  // setAnimation() {
-  //     gsap.to(this.camera.position, {
-  //       duration: 8,
-  //       delay: 2,
-  //       x: 165,
-  //       y: 95,
-  //       z: -180,
-  //     })
-  //     gsap.to(this.camera.rotation, {
-  //       duration: 8,
-  //       delay: 2,
-
-  //       y: -Math.PI / 2,
-  //     })
-  //   }
-  // }
 
   setOrbitControls() {
     // Set orbit control
@@ -82,11 +65,7 @@ export default class Camera {
       this.renderer.domElement
     )
 
-    this.orbitControls.enabled = true
-    // this.orbitControls.enableKeys = false
-    // this.orbitControls.zoomSpeed = 1
-    // this.orbitControls.enableZoom = false;
-    // this.orbitControls.enablePan = false
+    this.orbitControls.enabled = false
 
     if (this.debug) {
       this.debugFolder = this.debug.addFolder('Camera')

@@ -1,4 +1,6 @@
 import { gsap, TimelineMax } from 'gsap'
+import { movCircle, hoverFunc, unhoverFunc } from '../mouseCursor.js'
+import { launchVideo } from './endVideo'
 
 export function setParallax() {
   document.addEventListener('mousemove', parallax)
@@ -25,8 +27,21 @@ export function setPeintureDeFeu() {
   tl.reversed(true)
 
   function mouseHandler() {
-    if (document.querySelector('#masker').getAttribute('r') < 2300)
+    if (document.querySelector('#masker').getAttribute('r') < 2300) {
       tl.reversed(!tl.reversed())
+      fadeIn(document.querySelector('#lanceflamme').querySelector('.btn'))
+      let button = document.querySelector('#lanceflamme').querySelector('.btn')
+      document
+      button.querySelector('a').addEventListener('mouseover', hoverFunc)
+      button.querySelector('a').addEventListener('mouseout', unhoverFunc)
+      button.querySelector('a').addEventListener('click', () => {
+        launchVideo('scene3')
+        // button.style.opacity = 0
+        // setTimeout(() => {
+        //   button.remove()
+        // }, 2000)
+      })
+    }
   }
 
   function getPoint(evt) {
@@ -66,4 +81,18 @@ export function setPeintureDeFeu() {
 
   newSize()
   window.addEventListener('resize', newSize)
+}
+function fadeIn(element) {
+  var op = 0 // initial opacity
+  if (element == document.querySelector('#lanceflamme').querySelector('.btn')) {
+    element.style.display = 'flex'
+  } else {
+    element.style.display = 'block'
+  }
+  var timer = setInterval(function () {
+    if (op >= 1) {
+      clearInterval(timer)
+    }
+    element.style.opacity = 1
+  }, 10)
 }

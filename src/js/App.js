@@ -108,25 +108,23 @@ export default class App {
     })
   }
 
-  // cameraRotation() {
-  //   window.addEventListener('mousemove', (event) => {
-  //     this.mouse.x = event.clientX
-  //     this.mouse.y = event.clientY
-  //     this.camera.camera.rotation.x += Math.max(
-  //       Math.min((e.clientX - this.mouse.x) * 0.00007, this,),
-  //       -cameraMoves.speed
-  //     )
-  //   })
-  // }
-
-
-
   mouseClick() {
     document.addEventListener('click', () => {
       if (this.selected == null) {
         return
       }
-      console.log('aaaaaaaaa')
+      this.scene.children[1].children[1].children[0].material.map.image.play()
+
+      setTimeout(() => {
+        this.scene.children[1].children[0].children[0].children[0].children[1].material.color.set(
+          0x0006c2
+        )
+      }, 1200)
+      gsap.to(this.scene.children[1].children[1].children[0].material, {
+        duration: 1,
+        delay: 4,
+        opacity: 0,
+      })
       this.selected == null
     })
   }

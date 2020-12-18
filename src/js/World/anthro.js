@@ -1,5 +1,6 @@
 import { setParallax } from './firePaint.js'
 import { movCircle, hoverFunc, unhoverFunc } from '../mouseCursor.js'
+import { launchVideo } from './endVideo'
 import { gsap } from 'gsap'
 var anthros = document.querySelector('#anth').querySelectorAll('.anthro')
 var taches = document.querySelector('#anth').querySelectorAll('.tache')
@@ -53,6 +54,13 @@ export function setAnthro() {
               .addEventListener('mousemove', movCircle)
             button.querySelector('a').addEventListener('mouseover', hoverFunc)
             button.querySelector('a').addEventListener('mouseout', unhoverFunc)
+            button.querySelector('a').addEventListener('click', () => {
+              launchVideo('scene2')
+              button.style.opacity=0
+              setTimeout(() => {
+                button.remove()
+              },2000)
+            })
           }, 1200)
           break
       }

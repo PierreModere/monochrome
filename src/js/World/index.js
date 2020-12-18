@@ -67,19 +67,22 @@ export default class World {
         bgUrl = './explications/statue.png'
         shape = './explications/statueShape.png'
         title = 'La victoire de Samothrace'
-        explanationText = 'test'
+        explanationText =
+          '"La beauté du bleu dans l’éponge" Chaque sculpture est unique, élégante et dotée d’une finesse inégalée'
         break
       case 'scene2':
         bgUrl = './explications/anthro.png'
         shape = './explications/anthroShape.png'
         title = 'Anthropométries'
-        explanationText = 'ouiououo'
+        explanationText =
+          'C’est en même temps quelque chose qui renoue avec des mœurs très très anciennes, bien avant la civilisation, dans les cavernes, il y avait des traces, il y avait des empreintes, il y a eu des empreintes de mains'
         break
       case 'scene3':
         bgUrl = './explications/feu.png'
         shape = './explications/feuShape.png'
         title = 'Peinture de feu'
-        explanationText = "il est 5h59 à l'heure où j'écris ceci"
+        explanationText =
+          '"Le feu est pour moi l’avenir sans oublier le passé. Il est la mémoire de la nature. Il est douceur, le feu est douceur et torture. Il est cuisine et apocalypse"'
         break
     }
     infoDiv.style.backgroundImage = `url("${bgUrl}")`
@@ -89,6 +92,9 @@ export default class World {
     infoDiv.style.display = 'flex'
     infoDiv.addEventListener('click', (e) => {
       this.init(sceneNumber)
+      setTimeout(() => {
+        infoDiv.remove()
+      }, 2000)
     })
   }
   init(sceneNumber) {
@@ -197,7 +203,7 @@ export default class World {
   setCameraAnimation() {
     gsap.to(this.camera.position, {
       duration: 6,
-      delay: 1,
+      delay: 0.5,
       ease: Power3.easeOut,
       x: 165,
       y: 95,
@@ -205,7 +211,7 @@ export default class World {
     })
     gsap.to(this.camera.rotation, {
       duration: 5,
-      delay: 1,
+      delay: 0.5,
       y: -Math.PI / 2,
       ease: Power3.easeOut,
     })
