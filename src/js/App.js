@@ -160,7 +160,7 @@ export default class App {
       if (this.allowMove) {
         // Rotation verticale
         this.world.container.rotation.y += Math.max(
-          Math.min((e.clientX - this.mouse.x) * 0.00002, cameraMoves.speed),
+          Math.min((e.clientX - this.mouse.x) * 0.000005, cameraMoves.speed),
           -cameraMoves.speed
         )
         //Rotation horizontale
