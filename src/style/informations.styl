@@ -1,20 +1,55 @@
+@keyframes moveUp {
+    0% {
+        transform: translateY(-5px);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
 .informationDiv {
-    width: 100wv;
+    width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    color: white;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    transition: 1s opacity ease;
 
     .shape-div {
+        width: 545px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         .shape {
+            width: 60%;
+            height: auto;
+            animation: moveUp 4s ease both;
+            animation-iteration-count: infinite;
         }
     }
 
     .title {
+        text-align: center;
+        font-size: 36px;
     }
 
     .explanation {
+        font-size: 18px;
+        text-align: center;
+        width: 900px;
+        font-family: 'Lato';
     }
 }

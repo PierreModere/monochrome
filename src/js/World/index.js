@@ -46,16 +46,58 @@ export default class World {
 
     this.setLoader()
   }
+  showExplanations(sceneNumber) {
+    let infoDiv = document.querySelector('.informationDiv')
+    let shapeImg = infoDiv.querySelector('.shape')
+    let titleElement = infoDiv.querySelector('.title')
+    let textElement = infoDiv.querySelector('.explanation')
+    let bgUrl
+    let shape
+    let title
+    let explanationText
+
+    infoDiv.addEventListener('mousemove', movCircle)
+
+    document.querySelector('.menu').style.opacity = '0'
+    setTimeout(() => {
+      document.querySelector('.menu').remove()
+    }, 1000)
+    switch (sceneNumber) {
+      case 'scene1':
+        bgUrl = './explications/statue.png'
+        shape = './explications/statueShape.png'
+        title = 'La victoire de Samothrace'
+        explanationText = 'test'
+        break
+      case 'scene2':
+        bgUrl = './explications/anthro.png'
+        shape = './explications/anthroShape.png'
+        title = 'Anthropométries'
+        explanationText = 'ouiououo'
+        break
+      case 'scene3':
+        bgUrl = './explications/feu.png'
+        shape = './explications/feuShape.png'
+        title = 'Peinture de feu'
+        explanationText = "il est 5h59 à l'heure où j'écris ceci"
+        break
+    }
+    infoDiv.style.backgroundImage = `url("${bgUrl}")`
+    shapeImg.src = shape
+    titleElement.textContent = title
+    textElement.textContent = explanationText
+    infoDiv.style.display = 'flex'
+    infoDiv.addEventListener('click', (e) => {
+      this.init(sceneNumber)
+    })
+  }
   init(sceneNumber) {
     let scene1 = document.querySelector('#_canvas')
     let scene2 = document.querySelector('#anth')
     let scene3 = document.querySelector('#lanceflamme')
-
+    document.querySelector('.informationDiv').style.opacity = 0
     setTimeout(() => {
-      document.querySelector('.menu').style.opacity = '0'
-      setTimeout(() => {
-        document.querySelector('.menu').remove()
-      }, 550)
+      document.querySelector('.informationDiv').style.display = 'none'
     }, 730)
     switch (sceneNumber) {
       case 'scene1':
@@ -112,9 +154,9 @@ export default class World {
             this.changeMenuAnim(button.getAttribute('id'))
           })
           button.addEventListener('mouseout', this.resetMenuAnim)
-          
+
           button.addEventListener('click', (e) => {
-            this.init(button.getAttribute('id'))
+            this.showExplanations(button.getAttribute('id'))
           })
         }
       })

@@ -25,8 +25,8 @@ var cameraMoves = {
   move: false,
   speed: 0.2,
 }
-var raycaster = new Raycaster()
-var mouseRaycaster = new Vector2()
+// var raycaster = new Raycaster()
+// var mouseRaycaster = new Vector2()
 export default class App {
   constructor(options) {
     // Set options
@@ -40,11 +40,18 @@ export default class App {
     this.video = null
     this.materialVideo = null
 
+    this.mouseRaycaster = {}
+    this.raycaster = new Raycaster()
+
+    this.selected = null
+
     this.setConfig()
     this.setRenderer()
     this.setCamera()
     this.setWorld()
-    this.setMouseRotation()
+    // this.setMouseRotation()
+    this.mouseClick()
+    this.moseMovRaycastr()
   }
   setRenderer() {
     // Set scene
@@ -80,24 +87,44 @@ export default class App {
     this.time.on('tick', () => {
       if (window.isScene1) {
         this.renderer.render(this.scene, this.camera.camera)
-        this.setInfos()
+
+        this.raycaster.setFromCamera(this.mouseRaycaster, this.camera.camera)
+        // calculate objects intersecting the picking ray var intersects =
+        this.intersects = this.raycaster.intersectObjects(
+          this.scene.children[1].children[0].children[0].children[0].children
+        )
+        if (this.intersects.length > 0) {
+          this.intersects[0].object.parent.traverse((child) => {
+            if (child != this.selected) {
+              this.selected = child
+            }
+          })
+        } else {
+          this.selected = null
+        }
       }
     })
   }
 
-  paint(target, world, group, video) {
-    if (group[0].object.name == 'Levier001') {
-      target.set(0xf0f0f0)
-      gsap.to(group[0].object.rotation, {
-        duration: 2,
-        x: 20,
-      })
-      gsap.to(world.rotation, { y: 0, duration: 1, ease: Power3.easeOut })
-      allowMove = false
-      video.play()
-    }
+  mouseClick() {
+    document.addEventListener('click', () => {
+      if (this.selected == null) {
+        return
+      }
+      console.log('aaaaaaaaa')
+      this.selected == null
+    })
   }
 
+  moseMovRaycastr() {
+    window.addEventListener('mousemove', (event) => {
+      this.mouseRaycaster.x =
+        (event.clientX / this.sizes.viewport.width) * 2 - 1
+
+      this.mouseRaycaster.y =
+        -(event.clientY / this.sizes.viewport.height) * 2 + 1
+    })
+  }
   setMouseRotation() {
     // window.addEventListener('mousemove', (e) => {
     //   if (allowMove) {
@@ -117,16 +144,16 @@ export default class App {
     // })
   }
 
-  setInfos() {
-    if (!this.infos) {
-      this.infos = new Infos({
-        samothrace: this.scene.children[1].children[0].children[0].children[0],
-        sizes: this.sizes,
-        camera: this.camera.camera,
-        video: this.scene.children[1].children[2].children[0],
-      })
-    }
-  }
+  // setInfos() {
+  //   if (!this.infos) {
+  //     this.infos = new Infos({
+  //       samothrace: this.scene.children[1].children[0].children[0].children[0],
+  //       sizes: this.sizes,
+  //       camera: this.camera.camera,
+  //       video: this.scene.children[1].children[2].children[0],
+  //     })
+  //   }
+  // }
 
   setCamera() {
     // Create camera instance
