@@ -136,7 +136,7 @@ export default class App {
             launchVideo('scene1')
           })
         }, 2500)
-      }, 1200)
+      }, 2000)
       gsap.to(this.scene.children[1].children[1].children[0].material, {
         duration: 1,
         delay: 4,
