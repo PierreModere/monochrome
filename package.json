@@ -11,7 +11,7 @@
     "vanilla-fade": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
+    "@babel/core": "^7.17.0",
     "@babel/preset-env": "^7.12.7",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
@@ -35,7 +35,7 @@
     "raw-loader": "^4.0.2",
     "style-loader": "^2.0.0",
     "stylus": "^0.54.8",
-    "stylus-loader": "^4.3.1",
+    "stylus-loader": "^4.3.3",
     "three": "^0.123.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.2.0",
